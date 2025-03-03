@@ -97,6 +97,5 @@ export const productTagsContainer = style([
     top: '0',
     left: '0',
     position: 'absolute',
-    pointerEvents: 'none',
   }
 ]);

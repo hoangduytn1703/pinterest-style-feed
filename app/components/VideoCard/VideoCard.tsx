@@ -38,7 +38,14 @@ export function VideoCard({ video }: VideoCardProps) {
   return (
     <div className={styles.videoCard}>
       {!error ? (
-        <div className={styles.videoContainer} onClick={togglePlayback}>
+        <div
+          className={styles.videoContainer}
+          onClick={togglePlayback}
+          onKeyDown={(e) => e.key === "Enter" && togglePlayback()}
+          tabIndex={0}
+          role="button"
+          aria-label="Phát hoặc dừng video"
+        >
           {!isLoaded && <div className={styles.skeleton}></div>}
           <video
             ref={videoRef}
@@ -52,6 +59,14 @@ export function VideoCard({ video }: VideoCardProps) {
             style={{ display: isLoaded ? "block" : "none" }}
           >
             <source src={video.url} type="video/mp4" />
+            {video.captionSrc && (
+              <track
+                kind="captions"
+                src={video.captionSrc}
+                label="Tiếng Việt"
+                default
+              />
+            )}
             Trình duyệt của bạn không hỗ trợ thẻ video.
           </video>
           {isLoaded && !isPlaying && (
