@@ -132,10 +132,10 @@ export function FeedContainer() {
   useEffect(() => {
     const resizeGridItems = () => {
       const grid = document.querySelector(`.${styles.masonryGrid}`);
-      if (!grid) return; // Kiểm tra xem grid có tồn tại không
+      if (!grid) return;
       
       // Sử dụng giá trị mặc định nếu không thể lấy được từ CSS
-      let rowHeight = 10; // Giá trị mặc định
+      let rowHeight = 5; // Giá trị mặc định giảm xuống
       let rowGap = 16; // Giá trị mặc định
       
       try {
@@ -164,9 +164,10 @@ export function FeedContainer() {
       });
     };
     
-    // Thực hiện resize khi component mount và khi window resize
     // Thêm setTimeout để đảm bảo DOM đã được render
     setTimeout(resizeGridItems, 100);
+    
+    // Thực hiện resize khi component mount và khi window resize
     window.addEventListener('resize', resizeGridItems);
     
     // Thực hiện resize khi hình ảnh load xong
@@ -185,7 +186,7 @@ export function FeedContainer() {
         img.removeEventListener('load', resizeGridItems);
       });
     };
-  }, []);
+  }, [displayItems]);
   
   if (loading) {
     return (

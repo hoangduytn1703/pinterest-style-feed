@@ -5,7 +5,6 @@ export const container = style([
   sprinkles({
     display: 'flex',
     flexDirection: 'column',
-   
   }),
   {
     gap: '16px',
@@ -23,44 +22,35 @@ export const mainVideo = style([
     marginBottom: '24px',
     borderRadius: '8px',
     overflow: 'hidden',
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
   }
 ]);
 
-export const masonryGrid = style([
-  {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-    gridGap: '16px',
-    gridAutoFlow: 'dense',
-    '@media': {
-      '(min-width: 640px)': {
-        gridTemplateColumns: 'repeat(2, 1fr)',
-      },
-      '(min-width: 768px)': {
-        gridTemplateColumns: 'repeat(3, 1fr)',
-      },
-      '(min-width: 1024px)': {
-        gridTemplateColumns: 'repeat(4, 1fr)',
-      },
-    }
+export const masonryGrid = style({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+  gridGap: '16px',
+  gridAutoRows: '5px',
+  '@media': {
+    '(min-width: 640px)': {
+      gridTemplateColumns: 'repeat(2, 1fr)',
+    },
+    '(min-width: 768px)': {
+      gridTemplateColumns: 'repeat(3, 1fr)',
+    },
+    '(min-width: 1024px)': {
+      gridTemplateColumns: 'repeat(4, 1fr)',
+    },
   }
-]);
+});
 
-export const masonryItem = style([
-  {
-    breakInside: 'avoid',
-    marginBottom: '16px',
-    borderRadius: '8px',
-    overflow: 'hidden',
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    transition: 'transform 0.3s ease',
-    ':hover': {
-      transform: 'translateY(-4px)',
-      boxShadow: '0 6px 12px rgba(0, 0, 0, 0.15)',
-    }
+export const masonryItem = style({
+  borderRadius: '8px',
+  overflow: 'hidden',
+  transition: 'transform 0.3s ease',
+  ':hover': {
+    transform: 'translateY(-4px)',
   }
-]);
+});
 
 export const loading = style([
   sprinkles({

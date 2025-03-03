@@ -1,6 +1,19 @@
 import { style } from '@vanilla-extract/css';
 import { sprinkles } from '../../styles/sprinkles.css';
 
+export const container = style([
+  sprinkles({
+    
+    width: '100%',
+  }),
+  {
+    position: 'relative',
+    borderRadius: '8px',
+    overflow: 'hidden',
+    // Đã bỏ box shadow
+  }
+]);
+
 export const advertisement = style([
   sprinkles({
    
