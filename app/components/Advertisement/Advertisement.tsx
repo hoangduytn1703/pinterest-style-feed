@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useIntersectionObserver } from '~/hooks/useIntersectionObserver';
 import type { Advertisement as AdvertisementType } from '~/models/types';
 import * as styles from './Advertisement.css';
@@ -8,19 +9,27 @@ interface AdvertisementProps {
 
 export function Advertisement({ ad }: AdvertisementProps) {
   const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.1 });
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   // Sử dụng Picsum Photos thay vì Unsplash
   const imageUrl = `https://picsum.photos/${ad.width}/${ad.height}?random=${ad.id}`;
 
+  const handleImageLoad = () => {
+    setIsLoaded(true);
+  };
+
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     console.error('Hình ảnh quảng cáo không tải được');
+    setHasError(true);
     e.currentTarget.src = `https://via.placeholder.com/${ad.width}x${ad.height}?text=Quảng+cáo`;
   };
 
   return (
-    <div ref={ref as React.RefObject<HTMLDivElement>} className={styles.adContainer}>
+    <div ref={ref as React.RefObject<HTMLDivElement>} className={styles.advertisement}>
       {isIntersecting && (
         <>
+          {!isLoaded && !hasError && <div className={styles.skeleton}></div>}
           <img
             src={imageUrl}
             alt={ad.alt || 'Advertisement'}
@@ -28,9 +37,11 @@ export function Advertisement({ ad }: AdvertisementProps) {
             width={ad.width}
             height={ad.height}
             loading="lazy"
+            onLoad={handleImageLoad}
             onError={handleImageError}
+            style={{ display: isLoaded ? 'block' : 'none' }}
           />
-          <div className={styles.adLabel}>Quảng cáo</div>
+          {isLoaded && <div className={styles.adLabel}>Quảng cáo</div>}
         </>
       )}
     </div>

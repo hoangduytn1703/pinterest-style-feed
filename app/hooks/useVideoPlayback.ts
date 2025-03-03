@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useIntersectionObserver } from './useIntersectionObserver';
 
 export function useVideoPlayback() {
@@ -6,17 +6,12 @@ export function useVideoPlayback() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [wasPlaying, setWasPlaying] = useState(false);
   
-  // Sử dụng hook useIntersectionObserver
-  const { ref, isIntersecting } = useIntersectionObserver({
+  // Sử dụng hook useIntersectionObserver với ref riêng biệt
+  const { isIntersecting } = useIntersectionObserver({
     threshold: 0.5,
-    rootMargin: '0px'
+    rootMargin: '0px',
+    ref: videoRef
   });
-  
-  // Callback để kết hợp refs
-  const setVideoRef = useCallback((node: HTMLVideoElement | null) => {
-    videoRef.current = node;
-    ref.current = node;
-  }, [ref]);
   
   // Xử lý khi video vào hoặc ra khỏi viewport
   useEffect(() => {
@@ -36,7 +31,7 @@ export function useVideoPlayback() {
       }
     } else {
       // Khi video ra khỏi viewport
-      if (!videoRef.current.paused) {
+      if (videoRef.current && !videoRef.current.paused) {
         // Lưu trạng thái đang phát
         setWasPlaying(true);
         videoRef.current.pause();
@@ -66,7 +61,7 @@ export function useVideoPlayback() {
   };
   
   return {
-    videoRef: setVideoRef,
+    videoRef,
     isPlaying,
     togglePlayback
   };
