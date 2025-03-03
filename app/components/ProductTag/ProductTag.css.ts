@@ -20,7 +20,7 @@ export const tagIndicator = style({
   zIndex: 2,
   transition: `transform ${vars.transitions.fast}`,
   ":hover": {
-    transform: "scale(1.03)",
+    transform: "scale(1.3)",
   },
   "::after": {
     content: '""',

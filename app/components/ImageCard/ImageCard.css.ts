@@ -48,7 +48,7 @@ export const image = style([
     transition: "transform 0.3s ease",
     animation: `${fadeIn} 0.5s ease-in-out`,
     ":hover": {
-      transform: "scale(1.03)",
+      transform: "scale(1.3)",
     },
   },
 ]);

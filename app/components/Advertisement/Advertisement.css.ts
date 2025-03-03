@@ -27,10 +27,6 @@ export const advertisement = style([
     overflow: "hidden",
     backgroundColor: "#fff8e1", // Màu nền nhẹ để phân biệt quảng cáo
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-    transition: "transform 0.3s ease",
-    ":hover": {
-      transform: "scale(1.03)",
-    },
   },
 ]);
 
@@ -42,6 +38,10 @@ export const adImage = style([
   }),
   {
     animation: `${fadeIn} 0.5s ease-in-out`,
+    transition: "transform 0.3s ease",
+    ":hover": {
+      transform: "scale(1.3)",
+    },
   },
 ]);
 

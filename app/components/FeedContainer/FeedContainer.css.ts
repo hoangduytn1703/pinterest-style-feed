@@ -46,10 +46,6 @@ export const masonryItem = style({
   borderRadius: "8px",
   overflow: "hidden",
   marginBottom: "0",
-  transition: "transform 0.3s ease",
-  // ':hover': {
-  //   transform: 'translateY(-4px)',
-  // }
 });
 
 export const loading = style([
