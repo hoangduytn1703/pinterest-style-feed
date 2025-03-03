@@ -1,0 +1,66 @@
+[
+    {
+      "id": "ad-1",
+      "type": "advertisement",
+      "url": "https://picsum.photos/800/1200?random=1",
+      "width": 800,
+      "height": 800,
+      "alt": "Advertisement 1"
+    },
+    {
+      "id": "ad-2",
+      "type": "advertisement",
+      "url": "https://picsum.photos/800/1200?random=2",
+      "width": 800,
+      "height": 600,
+      "alt": "Advertisement 2"
+    },
+    {
+      "id": "ad-3",
+      "type": "advertisement",
+      "url": "https://picsum.photos/800/1200?random=3",
+      "width": 600,
+      "height": 800,
+      "alt": "Advertisement 3"
+    },
+    {
+      "id": "ad-4",
+      "type": "advertisement",
+      "url": "https://picsum.photos/800/1200?random=4",
+      "width": 900,
+      "height": 600,
+      "alt": "Advertisement 4"
+    },
+    {
+      "id": "ad-5",
+      "type": "advertisement",
+      "url": "https://picsum.photos/800/1200?random=5",
+      "width": 700,
+      "height": 900,
+      "alt": "Advertisement 5"
+    },
+    {
+      "id": "ad-6",
+      "type": "advertisement",
+      "url": "https://picsum.photos/800/1200?random=6",
+      "width": 800,
+      "height": 1000,
+      "alt": "Advertisement 6"
+    },
+    {
+      "id": "ad-7",
+      "type": "advertisement",
+      "url": "https://picsum.photos/800/1200?random=7",
+      "width": 600,
+      "height": 600,
+      "alt": "Advertisement 7"
+    },
+    {
+      "id": "ad-8",
+      "type": "advertisement",
+      "url": "https://picsum.photos/800/1200?random=8",
+      "width": 700,
+      "height": 700,
+      "alt": "Advertisement 8"
+    }
+  ]

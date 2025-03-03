@@ -1,0 +1,245 @@
+{
+    "items": [
+      {
+        "id": "video-3",
+        "type": "video",
+        "url": "https://coverr.co/videos/city-lights-at-night-9Ew9xLDQVl",
+        "width": 1920,
+        "height": 1080,
+        "thumbnail": "https://coverr.co/cdn-cgi/image/format=auto,width=1920/videos/city-lights-at-night-9Ew9xLDQVl/preview.webp",
+        "alt": "City lights at night"
+      },
+      {
+        "id": "image-41",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=41",
+        "width": 800,
+        "height": 1200,
+        "alt": "Random image 41",
+        "productTags": [
+          {
+            "id": "tag-16",
+            "x": 40,
+            "y": 50,
+            "price": 129.99,
+            "currency": "$",
+            "name": "Áo len"
+          }
+        ]
+      },
+      {
+        "id": "image-42",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=42",
+        "width": 600,
+        "height": 900,
+        "alt": "Random image 42"
+      },
+      {
+        "id": "image-43",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=43",
+        "width": 900,
+        "height": 600,
+        "alt": "Random image 43"
+      },
+      {
+        "id": "image-44",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=44",
+        "width": 800,
+        "height": 800,
+        "alt": "Random image 44",
+        "productTags": [
+          {
+            "id": "tag-17",
+            "x": 60,
+            "y": 40,
+            "price": 89.99,
+            "currency": "$",
+            "name": "Đồng hồ đeo tay"
+          }
+        ]
+      },
+      {
+        "id": "image-45",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=45",
+        "width": 700,
+        "height": 1000,
+        "alt": "Random image 45"
+      },
+      {
+        "id": "image-46",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=46",
+        "width": 900,
+        "height": 700,
+        "alt": "Random image 46"
+      },
+      {
+        "id": "image-47",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=47",
+        "width": 600,
+        "height": 800,
+        "alt": "Random image 47",
+        "productTags": [
+          {
+            "id": "tag-18",
+            "x": 30,
+            "y": 60,
+            "price": 149.99,
+            "currency": "$",
+            "name": "Balo"
+          }
+        ]
+      },
+      {
+        "id": "image-48",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=48",
+        "width": 800,
+        "height": 600,
+        "alt": "Random image 48"
+      },
+      {
+        "id": "image-49",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=49",
+        "width": 700,
+        "height": 900,
+        "alt": "Random image 49"
+      },
+      {
+        "id": "image-50",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=50",
+        "width": 900,
+        "height": 900,
+        "alt": "Random image 50",
+        "productTags": [
+          {
+            "id": "tag-19",
+            "x": 50,
+            "y": 70,
+            "price": 59.99,
+            "currency": "$",
+            "name": "Mũ lưỡi trai"
+          }
+        ]
+      },
+      {
+        "id": "image-51",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=51",
+        "width": 800,
+        "height": 1100,
+        "alt": "Random image 51"
+      },
+      {
+        "id": "image-52",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=52",
+        "width": 700,
+        "height": 700,
+        "alt": "Random image 52"
+      },
+      {
+        "id": "image-53",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=53",
+        "width": 600,
+        "height": 1000,
+        "alt": "Random image 53",
+        "productTags": [
+          {
+            "id": "tag-20",
+            "x": 70,
+            "y": 30,
+            "price": 199.99,
+            "currency": "$",
+            "name": "Áo khoác da"
+          }
+        ]
+      },
+      {
+        "id": "image-54",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=54",
+        "width": 900,
+        "height": 800,
+        "alt": "Random image 54"
+      },
+      {
+        "id": "image-55",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=55",
+        "width": 800,
+        "height": 700,
+        "alt": "Random image 55"
+      },
+      {
+        "id": "image-56",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=56",
+        "width": 700,
+        "height": 800,
+        "alt": "Random image 56",
+        "productTags": [
+          {
+            "id": "tag-21",
+            "x": 40,
+            "y": 50,
+            "price": 79.99,
+            "currency": "$",
+            "name": "Quần short"
+          }
+        ]
+      },
+      {
+        "id": "image-57",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=57",
+        "width": 800,
+        "height": 900,
+        "alt": "Random image 57"
+      },
+      {
+        "id": "image-58",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=58",
+        "width": 900,
+        "height": 1000,
+        "alt": "Random image 58"
+      },
+      {
+        "id": "image-59",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=59",
+        "width": 600,
+        "height": 600,
+        "alt": "Random image 59",
+        "productTags": [
+          {
+            "id": "tag-22",
+            "x": 60,
+            "y": 60,
+            "price": 49.99,
+            "currency": "$",
+            "name": "Vòng tay bạc"
+          }
+        ]
+      },
+      {
+        "id": "image-60",
+        "type": "image",
+        "url": "https://picsum.photos/800/1200?random=60",
+        "width": 700,
+        "height": 600,
+        "alt": "Random image 60"
+      }
+    ],
+    "nextPage": "current.json",
+    "prevPage": null
+  }
