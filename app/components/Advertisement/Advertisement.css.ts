@@ -29,8 +29,7 @@ export const advertisement = style([
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
     transition: "transform 0.3s ease",
     ":hover": {
-      transform: "translateY(-4px)",
-      boxShadow: "0 6px 12px rgba(0, 0, 0, 0.15)",
+      transform: "scale(1.03)",
     },
   },
 ]);
