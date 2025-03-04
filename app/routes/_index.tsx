@@ -13,13 +13,6 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>Pinterest-style Feed</h1>
-        <p className={styles.description}>
-          Khám phá feed với video, hình ảnh và quảng cáo theo phong cách Pinterest
-        </p>
-      </header>
-      
       <main>
         <FeedContainer />
       </main>
