@@ -6,7 +6,7 @@ interface UseIntersectionObserverProps {
 }
 
 export function useIntersectionObserver({
-  threshold = 0.1,
+  threshold = 0.01,
   rootMargin = '200px 0px',
 }: UseIntersectionObserverProps = {}) {
   const [isIntersecting, setIsIntersecting] = useState(false);

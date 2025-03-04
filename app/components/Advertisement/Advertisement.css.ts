@@ -65,9 +65,9 @@ export const skeleton = style({
   width: "100%",
   height: "100%",
   minHeight: "200px",
-  backgroundColor: "#fffbea",
+  backgroundColor: "#f0f0f0",
   backgroundImage:
-    "linear-gradient(90deg, #fffbea 0px, #fff8e1 40px, #fffbea 80px)",
+    "linear-gradient(90deg, #f0f0f0 0px, #f8f8f8 40px, #f0f0f0 80px)",
   backgroundSize: "200% 100%",
   backgroundPosition: "0 0",
   borderRadius: "8px",

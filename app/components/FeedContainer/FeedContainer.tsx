@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePagination } from "../../hooks/usePagination";
 import { ImageCard } from "../../components/ImageCard/ImageCard";
 import { VideoCard } from "../../components/VideoCard/VideoCard";
@@ -131,12 +131,11 @@ export function FeedContainer() {
     return result;
   };
 
-  // Đảm bảo displayItems được tính toán lại khi feedItems hoặc advertisements thay đổi
-  const displayItems = useMemo(() => getDisplayItems(), [feedItems, advertisements]);
+  const displayItems = getDisplayItems();
 
   // Tách video đầu tiên và các mục khác
-  const mainVideo = useMemo(() => displayItems.find((item) => item.type === "video"), [displayItems]);
-  const gridItems = useMemo(() => displayItems.filter((item) => item !== mainVideo), [displayItems, mainVideo]);
+  const mainVideo = displayItems.find((item) => item.type === "video");
+  const gridItems = displayItems.filter((item) => item !== mainVideo);
 
   // Tính toán chiều cao cho mỗi item trong grid
   useEffect(() => {
@@ -167,8 +166,11 @@ export function FeedContainer() {
         if (content) {
           try {
             const contentHeight = content.getBoundingClientRect().height;
+            // Đảm bảo chiều cao tối thiểu là 100px
+            const minHeight = 100;
+            const actualHeight = Math.max(contentHeight, minHeight);
             const rowSpan = Math.ceil(
-              (contentHeight + rowGap) / (rowHeight + rowGap)
+              (actualHeight + rowGap) / (rowHeight + rowGap)
             );
             (item as HTMLElement).style.gridRowEnd = `span ${rowSpan}`;
           } catch (err) {
@@ -194,11 +196,15 @@ export function FeedContainer() {
       }
     });
 
+    // Thêm một interval để kiểm tra và resize định kỳ
+    const intervalId = setInterval(resizeGridItems, 1000);
+
     return () => {
       window.removeEventListener("resize", resizeGridItems);
       images.forEach((img) => {
         img.removeEventListener("load", resizeGridItems);
       });
+      clearInterval(intervalId);
     };
   }, [displayItems]);
 
