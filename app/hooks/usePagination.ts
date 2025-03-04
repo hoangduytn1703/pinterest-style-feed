@@ -11,6 +11,17 @@ export function usePagination() {
   const [prevPageAvailable, setPrevPageAvailable] = useState(false);
   const [currentPage, setCurrentPage] = useState<'current' | 'next' | 'prev'>('current');
 
+  // Cleanup không cần thiết items
+  useEffect(() => {
+    return () => {
+      setFeedItems([]);
+      setAdvertisements([]);
+    };
+  }, []);
+
+  // Giới hạn số lượng items được lưu trữ
+  const MAX_ITEMS = 100;
+  
   const loadData = useCallback(async (page: 'current' | 'next' | 'prev') => {
     setIsLoading(true);
     try {
@@ -19,7 +30,9 @@ export function usePagination() {
         fetchAdvertisements(),
       ]);
       
-      setFeedItems(feedData.items || []);
+      // Giới hạn số lượng items
+      const limitedItems = feedData.items.slice(0, MAX_ITEMS);
+      setFeedItems(limitedItems);
       setAdvertisements(ads);
       setNextPageAvailable(!!feedData.nextPage);
       setPrevPageAvailable(!!feedData.prevPage);

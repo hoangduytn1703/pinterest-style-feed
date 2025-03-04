@@ -217,6 +217,34 @@ export function FeedContainer() {
     };
   }, [displayItems]);
 
+  // Thêm IntersectionObserver để load ảnh theo viewport
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '50px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target as HTMLImageElement;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+            observer.unobserve(img);
+          }
+        }
+      });
+    }, options);
+
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      observer.observe(img);
+    });
+
+    return () => observer.disconnect();
+  }, [feedItems]);
+
   if (loading) {
     return (
       <div className={styles.loading}>

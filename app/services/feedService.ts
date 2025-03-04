@@ -4,7 +4,14 @@ import type { PexelsVideo } from './pexelsService';
 
 export async function fetchFeedData(page: 'current' | 'next' | 'prev'): Promise<FeedData> {
   try {
-    // Tải dữ liệu từ file JSON
+    // Thêm cache cho API calls
+    const cacheKey = `feed_${page}`;
+    const cachedData = sessionStorage.getItem(cacheKey);
+    
+    if (cachedData) {
+      return JSON.parse(cachedData);
+    }
+
     const response = await fetch(`/data/${page}.json`);
     
     if (!response.ok) {
@@ -13,6 +20,17 @@ export async function fetchFeedData(page: 'current' | 'next' | 'prev'): Promise<
     
     const data = await response.json() as FeedData;
     
+    // Cache kết quả
+    sessionStorage.setItem(cacheKey, JSON.stringify(data));
+    
+    // Preload ảnh
+    data.items.forEach(item => {
+      if (item.type === 'image' || item.type === 'advertisement') {
+        const img = new Image();
+        img.src = item.url;
+      }
+    });
+
     // Đếm số lượng video cần thay thế
     const videoCount = data.items.filter(item => 
       item.type === 'video' && (item.usePexels || item.url === 'placeholder')

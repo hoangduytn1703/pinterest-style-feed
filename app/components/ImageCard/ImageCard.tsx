@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { ProductTag } from '../ProductTag/ProductTag';
 import type { ImageContent } from '../../models/types';
@@ -15,6 +15,8 @@ export function ImageCard({ image }: ImageCardProps) {
   const [wasIntersected, setWasIntersected] = useState(false);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+  const [retryCount, setRetryCount] = useState(0);
+  const MAX_RETRIES = 3;
   
   useEffect(() => {
     if (isIntersecting && !wasIntersected) {
@@ -22,15 +24,32 @@ export function ImageCard({ image }: ImageCardProps) {
     }
   }, [isIntersecting, wasIntersected]);
   
-  const handleImageLoad = () => {
-    setIsLoaded(true);
-  };
-  
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    console.error("Hình ảnh không tải được:", image.url);
-    setHasError(true);
-    e.currentTarget.src = `https://via.placeholder.com/${image.width}x${image.height}?text=Hình+ảnh+không+tải+được`;
-  };
+  const loadImage = useCallback(async () => {
+    if (retryCount >= MAX_RETRIES) {
+      setHasError(true);
+      return;
+    }
+
+    try {
+      const img = new Image();
+      img.src = image.url;
+      await new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = reject;
+      });
+      setIsLoaded(true);
+    } catch (error) {
+      console.error(`Lỗi khi tải ảnh (lần thử ${retryCount + 1}):`, error);
+      setRetryCount(prev => prev + 1);
+      setTimeout(loadImage, 1000);
+    }
+  }, [image.url, retryCount]);
+
+  useEffect(() => {
+    if (isIntersecting && !isLoaded && !hasError) {
+      loadImage();
+    }
+  }, [isIntersecting, isLoaded, hasError, loadImage]);
   
   useEffect(() => {
     if (containerRef.current) {
@@ -59,8 +78,6 @@ export function ImageCard({ image }: ImageCardProps) {
             width={image.width}
             height={image.height}
             loading="lazy"
-            onLoad={handleImageLoad}
-            onError={handleImageError}
             style={{ display: isLoaded ? 'block' : 'none' }}
           />
           
