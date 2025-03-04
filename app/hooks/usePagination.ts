@@ -79,16 +79,21 @@ export function usePagination() {
   const mergedItems = [];
   let adIndex = 0;
 
+  // Insert advertisements at Fibonacci positions
   for (let i = 0; i < feedItems.length; i++) {
-    const position = i + 1;
+    const position = i + 1; // Start from 1
 
     // Add normal item
     mergedItems.push(feedItems[i]);
 
     // Check if the next position is a Fibonacci, add advertisement
     if (isFibonacciIndex(position) && adIndex < advertisements.length) {
-      mergedItems.push(advertisements[adIndex]);
-      adIndex++;
+      // Find advertisement with corresponding adIndex
+      const ad = advertisements.find((ad) => ad.adIndex === position);
+      if (ad) {
+        mergedItems.push(ad);
+        adIndex++;
+      }
     }
   }
 

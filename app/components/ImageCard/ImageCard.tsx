@@ -1,8 +1,8 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
-import { ProductTag } from '../ProductTag/ProductTag';
-import type { ImageContent } from '../../models/types';
-import * as styles from './ImageCard.css';
+import { useRef, useState, useEffect, useCallback } from "react";
+import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
+import { ProductTag } from "../ProductTag/ProductTag";
+import type { ImageContent } from "../../models/types";
+import * as styles from "./ImageCard.css";
 
 interface ImageCardProps {
   image: ImageContent;
@@ -17,13 +17,13 @@ export const ImageCard = ({ image }: ImageCardProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [retryCount, setRetryCount] = useState(0);
   const MAX_RETRIES = 3;
-  
+
   useEffect(() => {
     if (isIntersecting && !wasIntersected) {
       setWasIntersected(true);
     }
   }, [isIntersecting, wasIntersected]);
-  
+
   const loadImage = useCallback(async () => {
     if (retryCount >= MAX_RETRIES) {
       setHasError(true);
@@ -40,7 +40,7 @@ export const ImageCard = ({ image }: ImageCardProps) => {
       setIsLoaded(true);
     } catch (error) {
       console.error(`Lỗi khi tải ảnh (lần thử ${retryCount + 1}):`, error);
-      setRetryCount(prev => prev + 1);
+      setRetryCount((prev) => prev + 1);
       setTimeout(loadImage, 1000);
     }
   }, [image.url, retryCount]);
@@ -50,16 +50,16 @@ export const ImageCard = ({ image }: ImageCardProps) => {
       loadImage();
     }
   }, [isIntersecting, isLoaded, hasError, loadImage]);
-  
+
   useEffect(() => {
     if (containerRef.current) {
       const { width, height } = containerRef.current.getBoundingClientRect();
       setDimensions({ width, height });
     }
   }, [isIntersecting, isLoaded]);
-  
+
   return (
-    <div 
+    <div
       ref={(el) => {
         if (el) {
           (ref as React.MutableRefObject<HTMLDivElement>).current = el;
@@ -68,27 +68,28 @@ export const ImageCard = ({ image }: ImageCardProps) => {
       }}
       className={styles.imageCard}
     >
-      {(isIntersecting || wasIntersected) ? (
+      {isIntersecting || wasIntersected ? (
         <>
           {!isLoaded && !hasError && <div className={styles.skeleton}></div>}
-          <img 
-            src={image.url} 
-            alt={image.alt} 
+          <img
+            src={image.url}
+            alt={image.alt}
             className={styles.image}
             width={image.width}
             height={image.height}
             loading="lazy"
-            style={{ display: isLoaded ? 'block' : 'none' }}
+            style={{ display: isLoaded ? "block" : "none" }}
           />
-          
+
           {isLoaded && image.productTags && image.productTags.length > 0 && (
             <div className={styles.productTagsContainer}>
+              {image.adIndex}
               {image.productTags.map((tag) => (
-                <ProductTag 
+                <ProductTag
                   key={tag.id}
-                  tag={tag} 
-                  containerWidth={dimensions.width} 
-                  containerHeight={dimensions.height} 
+                  tag={tag}
+                  containerWidth={dimensions.width}
+                  containerHeight={dimensions.height}
                 />
               ))}
             </div>
@@ -99,4 +100,4 @@ export const ImageCard = ({ image }: ImageCardProps) => {
       )}
     </div>
   );
-}
+};

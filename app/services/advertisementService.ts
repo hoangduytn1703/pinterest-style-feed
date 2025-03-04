@@ -15,13 +15,12 @@ export const fetchAdvertisements = async (): Promise<Advertisement[]> => {
     const ads = (await response.json()) as Advertisement[];
 
     // Set adIndex for each advertisement as required
-    const adPositions = [1, 2, 3, 5, 8, 13];
 
     // Preload advertisement images
     return Promise.all(
       ads.map(async (ad, index) => {
         // Ensure only using the required number of advertisements
-        if (index < adPositions.length) {
+        if (index < FIBONACCI_POSITIONS.length) {
           // Use fixed URL instead of random
           const imageUrl = `https://picsum.photos/seed/${ad.id}/${ad.width}/${ad.height}`;
 
@@ -42,7 +41,7 @@ export const fetchAdvertisements = async (): Promise<Advertisement[]> => {
           return {
             ...ad,
             url: imageUrl, // Update URL
-            adIndex: adPositions[index],
+            adIndex: FIBONACCI_POSITIONS[index],
           };
         }
         return ad;
