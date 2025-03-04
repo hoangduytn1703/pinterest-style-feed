@@ -5,18 +5,43 @@ const FIBONACCI_POSITIONS = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
 
 export async function fetchAdvertisements(): Promise<Advertisement[]> {
   try {
-    const response = await fetch("/data/advertisement.json");
+    // Thêm tham số cache-busting để tránh cache cũ
+    const response = await fetch(`/data/advertisement.json?_=${Date.now()}`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
     const ads = (await response.json()) as Advertisement[];
 
     // Đặt adIndex cho mỗi quảng cáo theo yêu cầu
     const adPositions = [1, 2, 3, 5, 8, 13];
 
+    // Tải trước hình ảnh quảng cáo
     return Promise.all(
       ads.map(async (ad, index) => {
         // Đảm bảo chỉ sử dụng đủ số lượng quảng cáo cần thiết
         if (index < adPositions.length) {
+          // Sử dụng URL cố định thay vì ngẫu nhiên
+          const imageUrl = `https://picsum.photos/seed/${ad.id}/${ad.width}/${ad.height}`;
+          
+          // Tải trước hình ảnh
+          try {
+            await new Promise((resolve) => {
+              const img = new Image();
+              img.onload = resolve;
+              img.onerror = resolve; // Vẫn tiếp tục ngay cả khi có lỗi
+              img.src = imageUrl;
+              // Đặt timeout để tránh chờ quá lâu
+              setTimeout(resolve, 2000);
+            });
+          } catch (e) {
+            console.error("Lỗi khi tải trước hình ảnh quảng cáo:", e);
+          }
+          
           return {
             ...ad,
+            url: imageUrl, // Cập nhật URL
             adIndex: adPositions[index],
           };
         }
