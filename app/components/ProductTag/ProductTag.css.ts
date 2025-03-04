@@ -30,6 +30,36 @@ export const tagIndicator = style({
     borderRadius: vars.radii.round,
     backgroundColor: vars.colors.primary,
   },
+  "@media": {
+    "(max-width: 639px)": {
+      width: "20px",
+      height: "20px",
+      ":hover": {
+        transform: "scale(1.2)",
+      },
+      "::after": {
+        width: "6px",
+        height: "6px",
+      },
+    },
+  },
+});
+
+export const tagInfo = style({
+  position: "absolute",
+  backgroundColor: vars.colors.white,
+  borderRadius: vars.radii.md,
+  padding: vars.space.md,
+  boxShadow: vars.shadows.lg,
+  zIndex: 3,
+  minWidth: "150px",
+  animation: `${fadeIn} ${vars.transitions.normal}`,
+  "@media": {
+    "(max-width: 639px)": {
+      minWidth: "120px",
+      padding: vars.space.sm,
+    },
+  },
 });
 
 export const tagName = style({

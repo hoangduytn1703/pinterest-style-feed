@@ -45,6 +45,14 @@ export const image = style([
     ":hover": {
       transform: "scale(1.3)",
     },
+    "@media": {
+      // Giảm hiệu ứng hover trên mobile để tránh lỗi UI
+      "(max-width: 639px)": {
+        ":hover": {
+          transform: "scale(1.1)",
+        },
+      },
+    },
   },
 ]);
 
@@ -64,6 +72,11 @@ export const skeleton = style({
     shimmer: {
       "0%": { backgroundPosition: "-200% 0" },
       "100%": { backgroundPosition: "200% 0" },
+    },
+  },
+  "@media": {
+    "(max-width: 639px)": {
+      minHeight: "150px", // Giảm chiều cao tối thiểu trên mobile
     },
   },
 });

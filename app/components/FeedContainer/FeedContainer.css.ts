@@ -42,7 +42,10 @@ export const masonryGrid = style({
   gridAutoRows: "5px",
   "@media": {
     "(max-width: 639px)": {
+      gridTemplateColumns: "repeat(2, 1fr)",
       gridGap: "8px",
+    },
+    "(min-width: 640px)": {
       gridTemplateColumns: "repeat(2, 1fr)",
     },
     "(min-width: 640px) and (max-width: 767px)": {
@@ -170,3 +173,11 @@ export const paginationButton = style([
     },
   },
 ]);
+
+export const videoItemMobile = style({
+  "@media": {
+    "(max-width: 639px)": {
+      gridColumn: "1 / -1",
+    },
+  },
+});

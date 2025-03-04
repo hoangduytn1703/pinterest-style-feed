@@ -27,6 +27,11 @@ export const advertisement = style([
     overflow: "hidden",
     backgroundColor: "#fff8e1",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+    "@media": {
+      "(max-width: 639px)": {
+        borderRadius: "6px", // Giảm border radius trên mobile
+      },
+    },
   },
 ]);
 
@@ -58,6 +63,14 @@ export const adLabel = style([
     backgroundColor: "rgba(0, 0, 0, 0.6)",
     borderRadius: "4px",
     fontWeight: 500,
+    "@media": {
+      "(max-width: 639px)": {
+        fontSize: "10px", // Nhỏ hơn trên mobile
+        padding: "3px 6px",
+        top: "4px",
+        right: "4px",
+      },
+    },
   },
 ]);
 
