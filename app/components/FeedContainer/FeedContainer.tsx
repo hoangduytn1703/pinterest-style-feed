@@ -8,6 +8,7 @@ import type {
   FeedItem,
   Advertisement as AdvertisementType,
 } from "../../models/types";
+import { usePullToRefresh } from '../../hooks/usePullToRefresh';
 
 export const FeedContainer = () => {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
@@ -24,6 +25,13 @@ export const FeedContainer = () => {
     loadPrevPage,
   } = usePagination();
   const prevPaginatedItemsRef = useRef<FeedItem[]>([]);
+
+  const { isPulling, pullProgress, pullContainerRef } = usePullToRefresh({
+    onRefresh: () => {
+      loadPrevPage();
+    },
+    threshold: 80,
+  });
 
   // Use data from usePagination hook
   useEffect(() => {
@@ -270,7 +278,21 @@ export const FeedContainer = () => {
   }
 
   return (
-    <div className={styles.container} ref={containerRef}>
+    <div 
+      ref={pullContainerRef}
+      className={styles.container}
+    >
+      {isPulling && (
+        <div 
+          className={styles.pullToRefreshIndicator}
+          style={{ transform: `translateY(${pullProgress}px)` }}
+        >
+          <div className={styles.pullIcon}>
+            {pullProgress >= 80 ? '↑ Thả để tải lại' : '↓ Kéo để tải lại'}
+          </div>
+        </div>
+      )}
+      
       {/* Main video at the top of the page */}
       {mainVideo && mainVideo.type === "video" && (
         <div className={styles.mainVideo}>

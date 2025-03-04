@@ -21,8 +21,8 @@ export function useDeviceDetection(): DeviceInfo {
       const height = window.innerHeight;
       
       setDeviceInfo({
-        isMobile: width < 640,
-        isTablet: width >= 640 && width < 1024,
+        isMobile: width < 768,
+        isTablet: width >= 768 && width < 1024,
         isDesktop: width >= 1024,
         orientation: width > height ? 'landscape' : 'portrait',
       });
