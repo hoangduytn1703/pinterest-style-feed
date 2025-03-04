@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { usePagination } from "../../hooks/usePagination";
 import { ImageCard } from "../../components/ImageCard/ImageCard";
 import { VideoCard } from "../../components/VideoCard/VideoCard";
@@ -131,11 +131,12 @@ export function FeedContainer() {
     return result;
   };
 
-  const displayItems = getDisplayItems();
+  // Đảm bảo displayItems được tính toán lại khi feedItems hoặc advertisements thay đổi
+  const displayItems = useMemo(() => getDisplayItems(), [feedItems, advertisements]);
 
   // Tách video đầu tiên và các mục khác
-  const mainVideo = displayItems.find((item) => item.type === "video");
-  const gridItems = displayItems.filter((item) => item !== mainVideo);
+  const mainVideo = useMemo(() => displayItems.find((item) => item.type === "video"), [displayItems]);
+  const gridItems = useMemo(() => displayItems.filter((item) => item !== mainVideo), [displayItems, mainVideo]);
 
   // Tính toán chiều cao cho mỗi item trong grid
   useEffect(() => {
