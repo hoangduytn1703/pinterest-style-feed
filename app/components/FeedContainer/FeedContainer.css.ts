@@ -11,6 +11,11 @@ export const container = style([
     padding: "16px",
     maxWidth: "1200px",
     margin: "0 auto",
+    "@media": {
+      "(max-width: 767px)": {
+        padding: "0px",
+      },
+    },
   },
 ]);
 
@@ -22,6 +27,11 @@ export const mainVideo = style([
     marginBottom: "24px",
     borderRadius: "8px",
     overflow: "hidden",
+    "@media": {
+      "(max-width: 767px)": {
+        marginBottom: "0px",
+      },
+    },
   },
 ]);
 
@@ -29,15 +39,28 @@ export const masonryGrid = style({
   display: "grid",
   gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
   gridGap: "16px",
+  gridAutoRows: "5px",
   "@media": {
-    "(min-width: 640px)": {
+    "(max-width: 639px)": {
+      gridGap: "8px",
       gridTemplateColumns: "repeat(2, 1fr)",
     },
-    "(min-width: 768px)": {
+    "(min-width: 640px) and (max-width: 767px)": {
+      gridTemplateColumns: "repeat(2, 1fr)",
+    },
+    "(min-width: 768px) and (max-width: 1023px)": {
       gridTemplateColumns: "repeat(3, 1fr)",
     },
     "(min-width: 1024px)": {
       gridTemplateColumns: "repeat(4, 1fr)",
+    },
+  },
+});
+
+export const mobileFullWidthItem = style({
+  "@media": {
+    "(max-width: 767px)": {
+      gridColumn: "1 / -1", 
     },
   },
 });

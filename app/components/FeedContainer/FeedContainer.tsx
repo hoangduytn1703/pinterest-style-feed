@@ -9,7 +9,7 @@ import type {
   Advertisement as AdvertisementType,
 } from "../../models/types";
 
-export function FeedContainer() {
+export const FeedContainer = () => {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
   const [advertisements, setAdvertisements] = useState<AdvertisementType[]>([]);
   const [loading, setLoading] = useState(true);

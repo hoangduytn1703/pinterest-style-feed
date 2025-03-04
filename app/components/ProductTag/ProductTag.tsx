@@ -8,7 +8,7 @@ interface ProductTagProps {
   containerHeight: number;
 }
 
-export function ProductTag({ tag, containerWidth, containerHeight }: ProductTagProps) {
+export const ProductTag = ({ tag }: ProductTagProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const tagRef = useRef<HTMLDivElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);

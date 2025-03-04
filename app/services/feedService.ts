@@ -2,9 +2,9 @@ import type { FeedData } from '../models/types';
 import { fetchPexelsVideos, formatPexelsVideoForFeed } from './pexelsService';
 import type { PexelsVideo } from './pexelsService';
 
-export async function fetchFeedData(page: 'current' | 'next' | 'prev'): Promise<FeedData> {
+export const fetchFeedData = async (page: 'current' | 'next' | 'prev'): Promise<FeedData> => {
   try {
-    // Thêm cache cho API calls
+    // Add cache for API calls
 
     const response = await fetch(`/data/${page}.json`);
     
@@ -16,21 +16,21 @@ export async function fetchFeedData(page: 'current' | 'next' | 'prev'): Promise<
     
 
 
-    // Đếm số lượng video cần thay thế
+    // Count the number of videos to replace
     const videoCount = data.items.filter(item => 
       item.type === 'video' && (item.usePexels || item.url === 'placeholder')
     ).length;
     
-    // Tải video từ Pexels API nếu cần
+    // Load videos from Pexels API if needed
     let pexelsVideos: PexelsVideo[] = [];
     if (videoCount > 0) {
       pexelsVideos = await fetchPexelsVideos('nature', videoCount);
     }
     
-    // Thay thế video trong feed bằng video từ Pexels API
+    // Replace videos in feed with videos from Pexels API
     const updatedItems = await Promise.all(data.items.map(async (item) => {
       if (item.type === 'video' && (item.usePexels || item.url === 'placeholder') && pexelsVideos.length > 0) {
-        // Lấy video đầu tiên từ danh sách và xóa nó khỏi danh sách
+        // Get first video from list and remove it from list
         const pexelsVideo = pexelsVideos.shift();
         if (pexelsVideo) {
           return formatPexelsVideoForFeed(pexelsVideo);
@@ -44,8 +44,8 @@ export async function fetchFeedData(page: 'current' | 'next' | 'prev'): Promise<
       items: updatedItems
     };
   } catch (error) {
-    console.error('Lỗi khi tải dữ liệu feed:', error);
-    // Trả về dữ liệu mặc định nếu không tải được
+    console.error('Error loading feed data:', error);
+    // Return default data if unable to load
     return {
       items: []
     };

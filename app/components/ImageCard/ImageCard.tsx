@@ -8,7 +8,7 @@ interface ImageCardProps {
   image: ImageContent;
 }
 
-export function ImageCard({ image }: ImageCardProps) {
+export const ImageCard = ({ image }: ImageCardProps) => {
   const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.1 });
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);

@@ -3,7 +3,7 @@ import type { Advertisement } from "~/models/types";
 // List Fibonacci: 1, 2, 3, 5, 8, 13, 21, ...
 const FIBONACCI_POSITIONS = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
 
-export async function fetchAdvertisements(): Promise<Advertisement[]> {
+export const fetchAdvertisements = async (): Promise<Advertisement[]> => {
   try {
     // Thêm tham số cache-busting để tránh cache cũ
     const response = await fetch(`/data/advertisement.json?_=${Date.now()}`);
@@ -54,10 +54,10 @@ export async function fetchAdvertisements(): Promise<Advertisement[]> {
   }
 }
 
-export async function getUnsplashImageUrl(
+export const getUnsplashImageUrl = async (
   width: number,
   height: number
-): Promise<string> {
+): Promise<string> => {
   try {
     const response = await fetch(
       `/api/unsplash?width=${width}&height=${height}`

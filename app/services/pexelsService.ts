@@ -22,7 +22,7 @@ export interface PexelsVideo {
   }>;
 }
 
-export async function fetchPexelsVideos(query = 'nature', perPage = 5): Promise<PexelsVideo[]> {
+export const fetchPexelsVideos = async (query = 'nature', perPage = 5): Promise<PexelsVideo[]> => {
   try {
     const response = await fetch(`/api/pexels/videos?query=${query}&per_page=${perPage}`);
     
@@ -33,13 +33,13 @@ export async function fetchPexelsVideos(query = 'nature', perPage = 5): Promise<
     const data = await response.json();
     return data.videos || [];
   } catch (error) {
-    console.error('Lỗi khi tải video từ Pexels:', error);
+    console.error('Error loading videos from Pexels:', error);
     return [];
   }
 }
 
-export function formatPexelsVideoForFeed(pexelsVideo: PexelsVideo): VideoContent {
-  // Lấy file video có độ phân giải HD
+export const formatPexelsVideoForFeed = (pexelsVideo: PexelsVideo): VideoContent => {
+  // Get HD video file
   const videoFile = pexelsVideo.video_files.find((file) => 
     file.quality === 'hd' && file.file_type === 'video/mp4'
   ) || pexelsVideo.video_files[0];
