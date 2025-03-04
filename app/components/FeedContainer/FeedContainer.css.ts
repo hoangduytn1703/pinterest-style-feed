@@ -181,3 +181,89 @@ export const videoItemMobile = style({
     },
   },
 });
+
+export const navigationButton = style({
+  position: 'fixed',
+  top: '50%',
+  transform: 'translateY(-50%)',
+  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+  border: 'none',
+  borderRadius: '50%',
+  width: '48px',
+  height: '48px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  cursor: 'pointer',
+  boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+  transition: 'all 0.3s ease',
+  zIndex: 10,
+
+  ':hover': {
+    backgroundColor: 'white',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+    transform: 'translateY(-50%) scale(1.1)',
+  },
+
+  ':disabled': {
+    opacity: 0.5,
+    cursor: 'not-allowed',
+    transform: 'translateY(-50%) scale(1)',
+  },
+
+  '@media': {
+    '(max-width: 768px)': {
+      position: 'fixed',
+      top: 'auto',
+      bottom: '20px',
+      width: '40px',
+      height: '40px',
+      transform: 'none',
+
+      ':hover': {
+        transform: 'none',
+      }
+    }
+  }
+});
+
+export const prevButton = style([
+  navigationButton,
+  {
+    left: '20px',
+
+    '@media': {
+      '(max-width: 768px)': {
+        left: '20px',
+        bottom: '20px',
+      }
+    }
+  }
+]);
+
+export const nextButton = style([
+  navigationButton,
+  {
+    right: '20px',
+
+    '@media': {
+      '(max-width: 768px)': {
+        right: '20px',
+        bottom: '20px',
+      }
+    }
+  }
+]);
+
+export const buttonIcon = style({
+  width: '24px',
+  height: '24px',
+  fill: '#333',
+
+  '@media': {
+    '(max-width: 768px)': {
+      width: '20px',
+      height: '20px',
+    }
+  }
+});

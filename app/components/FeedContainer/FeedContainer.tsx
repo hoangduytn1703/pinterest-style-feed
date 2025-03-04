@@ -8,7 +8,7 @@ import type {
   FeedItem,
   Advertisement as AdvertisementType,
 } from "../../models/types";
-import { usePullToRefresh } from '../../hooks/usePullToRefresh';
+import { usePullToRefresh } from "../../hooks/usePullToRefresh";
 
 export const FeedContainer = () => {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
@@ -36,12 +36,13 @@ export const FeedContainer = () => {
   // Use data from usePagination hook
   useEffect(() => {
     // Check if paginatedItems has actually changed
-    const paginatedItemsChanged = 
-      JSON.stringify(prevPaginatedItemsRef.current) !== JSON.stringify(paginatedItems);
-    
+    const paginatedItemsChanged =
+      JSON.stringify(prevPaginatedItemsRef.current) !==
+      JSON.stringify(paginatedItems);
+
     if (paginatedItemsChanged) {
       prevPaginatedItemsRef.current = paginatedItems;
-      
+
       if (paginatedItems.length > 0) {
         // Separate advertisements and other items
         const ads = paginatedItems.filter(
@@ -109,9 +110,12 @@ export const FeedContainer = () => {
   }, [handleTouchStart, handleTouchMove, handleTouchEnd]);
 
   // Find advertisement by adIndex
-  const findAdvertisement = useCallback((adIndex: number) => {
-    return advertisements.find((ad) => ad.adIndex === adIndex);
-  }, [advertisements]);
+  const findAdvertisement = useCallback(
+    (adIndex: number) => {
+      return advertisements.find((ad) => ad.adIndex === adIndex);
+    },
+    [advertisements]
+  );
 
   // Create list of display items, including advertisements
   const getDisplayItems = useCallback(() => {
@@ -229,24 +233,24 @@ export const FeedContainer = () => {
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: '50px',
-      threshold: 0.1
+      rootMargin: "50px",
+      threshold: 0.1,
     };
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const img = entry.target as HTMLImageElement;
           if (img.dataset.src) {
             img.src = img.dataset.src;
-            img.removeAttribute('data-src');
+            img.removeAttribute("data-src");
             observer.unobserve(img);
           }
         }
       });
     }, options);
 
-    document.querySelectorAll('img[data-src]').forEach(img => {
+    document.querySelectorAll("img[data-src]").forEach((img) => {
       observer.observe(img);
     });
 
@@ -278,21 +282,18 @@ export const FeedContainer = () => {
   }
 
   return (
-    <div 
-      ref={pullContainerRef}
-      className={styles.container}
-    >
+    <div ref={pullContainerRef} className={styles.container}>
       {isPulling && (
-        <div 
+        <div
           className={styles.pullToRefreshIndicator}
           style={{ transform: `translateY(${pullProgress}px)` }}
         >
           <div className={styles.pullIcon}>
-            {pullProgress >= 80 ? '↑ Thả để tải lại' : '↓ Kéo để tải lại'}
+            {pullProgress >= 80 ? "↑ Thả để tải lại" : "↓ Kéo để tải lại"}
           </div>
         </div>
       )}
-      
+
       {/* Main video at the top of the page */}
       {mainVideo && mainVideo.type === "video" && (
         <div className={styles.mainVideo}>
@@ -330,26 +331,25 @@ export const FeedContainer = () => {
       <div className={styles.pagination}>
         <button
           onClick={loadPrevPage}
-          disabled={currentPage === "current" && !nextPage}
-          className={styles.paginationButton}
+          disabled={currentPage === "prev"}
+          className={styles.prevButton}
+          aria-label="Previous page"
         >
-          <span className={styles.buttonIcon}>←</span>
-          Previous page
+          <svg className={styles.buttonIcon} viewBox="0 0 24 24">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+          </svg>
         </button>
         <button
           onClick={loadNextPage}
           disabled={!nextPage}
-          className={styles.paginationButton}
+          className={styles.nextButton}
+          aria-label="Next page"
         >
-          Next page
-          <span
-            className={styles.buttonIcon}
-            style={{ marginLeft: "8px", marginRight: 0 }}
-          >
-            →
-          </span>
+          <svg className={styles.buttonIcon} viewBox="0 0 24 24">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+          </svg>
         </button>
       </div>
     </div>
   );
-}
+};
