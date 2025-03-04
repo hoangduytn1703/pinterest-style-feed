@@ -89,7 +89,7 @@ export const loading = style({
 
 const spin = keyframes({
   "0%": { transform: "rotate(0deg)" },
-  "100%": { transform: "rotate(360deg)" }
+  "100%": { transform: "rotate(360deg)" },
 });
 
 export const loadingSpinner = style({
@@ -98,7 +98,7 @@ export const loadingSpinner = style({
   border: "4px solid #f3f3f3",
   borderTop: "4px solid #3498db",
   borderRadius: "50%",
-  animation: `${spin} 1s linear infinite`
+  animation: `${spin} 1s linear infinite`,
 });
 
 export const error = style([
@@ -179,3 +179,115 @@ export const videoItemMobile = style({
     },
   },
 });
+export const pullToRefreshIndicator = style({
+  position: "absolute",
+  top: 0,
+  left: 0,
+  right: 0,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "60px",
+  pointerEvents: "none",
+  zIndex: 100,
+});
+
+export const pullSpinner = style({
+  width: "40px",
+  height: "40px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: "rgba(255, 255, 255, 0.9)",
+  borderRadius: "50%",
+  boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+  color: "#3498db",
+  transition: "transform 0.2s ease",
+});
+
+export const prevButton = style({
+  position: 'fixed',
+  left: '20px',
+  top: '50%',
+  transform: 'translateY(-50%)',
+  width: '50px',
+  height: '50px',
+  borderRadius: '50%',
+  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+  border: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  cursor: 'pointer',
+  zIndex: 10,
+  transition: 'all 0.3s ease',
+  ':hover': {
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+  },
+  ':disabled': {
+    opacity: 0.5,
+    cursor: 'not-allowed',
+  },
+  '@media': {
+    '(max-width: 767px)': {
+      width: '40px',
+      height: '40px',
+      left: '10px',
+      bottom: '20px',
+      top: 'auto',
+      transform: 'none',
+    },
+  },
+});
+
+export const nextButton = style({
+  position: 'fixed',
+  right: '20px',
+  top: '50%',
+  transform: 'translateY(-50%)',
+  width: '50px',
+  height: '50px',
+  borderRadius: '50%',
+  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+  border: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  cursor: 'pointer',
+  zIndex: 10,
+  transition: 'all 0.3s ease',
+  ':hover': {
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+  },
+  ':disabled': {
+    opacity: 0.5,
+    cursor: 'not-allowed',
+  },
+  '@media': {
+    '(max-width: 767px)': {
+      width: '40px',
+      height: '40px',
+      right: '10px',
+      bottom: '20px',
+      top: 'auto',
+      transform: 'none',
+    },
+  },
+});
+
+export const buttonIcon = style({
+  width: '24px',
+  height: '24px',
+  fill: '#333',
+  '@media': {
+    '(max-width: 767px)': {
+      width: '20px',
+      height: '20px',
+    },
+  },
+});
+

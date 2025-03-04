@@ -1,10 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import type { FeedItem } from "~/models/types";
 import { fetchFeedData } from "../services/feedService";
-import {
-  fetchAdvertisements,
-  shouldInsertAdvertisement,
-} from "../services/advertisementService";
+import { fetchAdvertisements } from "../services/advertisementService";
 
 export function usePagination() {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
@@ -16,7 +13,7 @@ export function usePagination() {
     "current"
   );
 
-  // Cleanup không cần thiết items
+  // Cleanup 
   useEffect(() => {
     return () => {
       setFeedItems([]);

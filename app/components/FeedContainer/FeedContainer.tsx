@@ -9,7 +9,9 @@ import type {
   Advertisement as AdvertisementType,
 } from "../../models/types";
 import { usePullToRefresh } from "../../hooks/usePullToRefresh";
-
+import IconPull from "../../assets/images/icon-pull.svg";
+import IconPrev from "../../assets/images/icon-prev.svg";
+import IconNext from "../../assets/images/icon-next.svg";
 export const FeedContainer = () => {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
   const [advertisements, setAdvertisements] = useState<AdvertisementType[]>([]);
@@ -287,8 +289,14 @@ export const FeedContainer = () => {
           className={styles.pullToRefreshIndicator}
           style={{ transform: `translateY(${pullProgress}px)` }}
         >
-          <div className={styles.pullIcon}>
-            {pullProgress >= 80 ? "↑ Thả để tải lại" : "↓ Kéo để tải lại"}
+          <div
+            className={styles.pullSpinner}
+            style={{
+              opacity: pullProgress >= 80 ? 1 : pullProgress / 80,
+              transform: `rotate(${pullProgress * 3}deg)`,
+            }}
+          >
+            <img src={IconPull} alt="Pull to refresh" />
           </div>
         </div>
       )}
@@ -327,28 +335,22 @@ export const FeedContainer = () => {
       </div>
 
       {/* Navigation buttons */}
-      <div className={styles.pagination}>
-        <button
-          onClick={loadPrevPage}
-          disabled={currentPage === "prev"}
-          className={styles.prevButton}
-          aria-label="Previous page"
-        >
-          <svg className={styles.buttonIcon} viewBox="0 0 24 24">
-            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-          </svg>
-        </button>
-        <button
-          onClick={loadNextPage}
-          disabled={!nextPage}
-          className={styles.nextButton}
-          aria-label="Next page"
-        >
-          <svg className={styles.buttonIcon} viewBox="0 0 24 24">
-            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
-          </svg>
-        </button>
-      </div>
+      <button
+        onClick={loadPrevPage}
+        disabled={currentPage === "prev"}
+        className={styles.prevButton}
+        aria-label="Previous page"
+      >
+        <img src={IconPrev} className={styles.buttonIcon} alt="Previous" />
+      </button>
+      <button
+        onClick={loadNextPage}
+        disabled={!nextPage}
+        className={styles.nextButton}
+        aria-label="Next page"
+      >
+        <img src={IconNext} className={styles.buttonIcon} alt="Next" />
+      </button>
     </div>
   );
 };

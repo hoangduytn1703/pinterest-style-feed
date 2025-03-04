@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import { useVideoPlayback } from "../../hooks/useVideoPlayback";
 import * as styles from "./VideoCard.css";
 import type { VideoContent } from "../../models/types";
-
+import IconPlay from "../../assets/images/icon-play.svg";
 interface VideoCardProps {
   video: VideoContent;
 }
 
 export function VideoCard({ video }: VideoCardProps) {
-  console.log("🚀 ~ VideoCard ~ video:", video);
   const [error, setError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const { videoRef, isPlaying, togglePlayback } = useVideoPlayback();
@@ -45,7 +44,7 @@ export function VideoCard({ video }: VideoCardProps) {
           onKeyDown={(e) => e.key === "Enter" && togglePlayback()}
           tabIndex={0}
           role="button"
-          aria-label="Phát hoặc dừng video"
+          aria-label="Play or pause video"
         >
           {!isLoaded && <div className={styles.skeleton}></div>}
           <video
@@ -63,22 +62,15 @@ export function VideoCard({ video }: VideoCardProps) {
             <track
               kind="captions"
               src=""
-              label="Tiếng Việt"
+              label="Vietnamese"
               srcLang="vi"
               default
             />
-            Trình duyệt của bạn không hỗ trợ thẻ video.
+            Your browser does not support the video tag.
           </video>
           {isLoaded && !isPlaying && (
             <div className={styles.playButton}>
-              <svg
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                width="48"
-                height="48"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
+              <img src={IconPlay} alt="Play" />
             </div>
           )}
         </div>
@@ -89,7 +81,7 @@ export function VideoCard({ video }: VideoCardProps) {
             alt={video.alt}
             className={styles.fallbackImage}
           />
-          <div className={styles.errorMessage}>Không thể phát video</div>
+          <div className={styles.errorMessage}>Cannot play video</div>
         </div>
       )}
     </div>
