@@ -12,8 +12,15 @@ export function ImageCard({ image }: ImageCardProps) {
   const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.1 });
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [wasIntersected, setWasIntersected] = useState(false);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    if (isIntersecting && !wasIntersected) {
+      setWasIntersected(true);
+    }
+  }, [isIntersecting, wasIntersected]);
   
   const handleImageLoad = () => {
     setIsLoaded(true);
@@ -42,7 +49,7 @@ export function ImageCard({ image }: ImageCardProps) {
       }}
       className={styles.imageCard}
     >
-      {isIntersecting ? (
+      {(isIntersecting || wasIntersected) ? (
         <>
           {!isLoaded && !hasError && <div className={styles.skeleton}></div>}
           <img 

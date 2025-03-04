@@ -74,5 +74,6 @@ export function useVideoPlayback() {
     videoRef: setVideoRef,
     isPlaying,
     togglePlayback,
+    isIntersecting,
   };
 }

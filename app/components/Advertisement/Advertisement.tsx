@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useIntersectionObserver } from '~/hooks/useIntersectionObserver';
 import type { Advertisement as AdvertisementType } from '~/models/types';
 import * as styles from './Advertisement.css';
@@ -11,6 +11,14 @@ export function Advertisement({ ad }: AdvertisementProps) {
   const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.1 });
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [wasIntersected, setWasIntersected] = useState(false);
+
+  // Theo dõi khi phần tử đã từng hiển thị
+  useEffect(() => {
+    if (isIntersecting && !wasIntersected) {
+      setWasIntersected(true);
+    }
+  }, [isIntersecting, wasIntersected]);
 
   // Sử dụng Picsum Photos thay vì Unsplash
   const imageUrl = `https://picsum.photos/${ad.width}/${ad.height}?random=${ad.id}`;
@@ -27,7 +35,7 @@ export function Advertisement({ ad }: AdvertisementProps) {
 
   return (
     <div ref={ref as React.RefObject<HTMLDivElement>} className={styles.advertisement}>
-      {isIntersecting && (
+      {(isIntersecting || wasIntersected) && (
         <>
           {!isLoaded && !hasError && <div className={styles.skeleton}></div>}
           <img
