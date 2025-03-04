@@ -19,15 +19,10 @@ export const container = style([
 ]);
 
 export const imageCard = style([
-  sprinkles({
-    width: "100%",
-  }),
   {
     position: "relative",
     borderRadius: "8px",
     overflow: "hidden",
-    backgroundColor: "#f5f5f5",
-    cursor: "pointer",
   },
 ]);
 
@@ -90,13 +85,12 @@ export const errorContainer = style([
 ]);
 
 export const productTagsContainer = style([
-  sprinkles({
-    width: "100%",
-  }),
+  sprinkles({}),
   {
+    height: "100%",
+    width: "100%",
     top: "0",
     left: "0",
     position: "absolute",
-    height: "100%",
   },
 ]);

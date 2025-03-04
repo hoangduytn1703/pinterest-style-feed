@@ -19,19 +19,11 @@
       "productTags": [
         {
           "id": "tag-1",
-          "x": 1,
-          "y": 1,
+          "x": 3,
+          "y": 3,
           "price": 49.99,
           "currency": "$",
-          "name": "Áo thun trắng"
-        },
-        {
-          "id": "tag-2",
-          "x": 5,
-          "y": 6,
-          "price": 29.99,
-          "currency": "$",
-          "name": "Túi xách"
+          "name": "Case 1 - top left"
         }
       ]
     },
@@ -41,7 +33,17 @@
       "url": "https://picsum.photos/800/1200?random=2",
       "width": 600,
       "height": 900,
-      "alt": "Random image 2"
+      "alt": "Random image 2",
+      "productTags": [
+        {
+          "id": "tag-2",
+          "x": 88,
+          "y": 91,
+          "price": 29.99,
+          "currency": "$",
+          "name": "Case 2 - bottom right"
+        }
+      ]
     },
     {
       "id": "image-3",
@@ -52,12 +54,28 @@
       "alt": "Random image 3",
       "productTags": [
         {
-          "id": "tag-3",
-          "x": 20,
-          "y": 30,
-          "price": 99.99,
+          "id": "tag-1",
+          "x": 3,
+          "y": 3,
+          "price": 49.99,
           "currency": "$",
-          "name": "Giày thể thao"
+          "name": "Multi tags 1"
+        },
+        {
+          "id": "tag-2",
+          "x": 50,
+          "y": 50,
+          "price": 29.99,
+          "currency": "$",
+          "name": "Multi tags 2"
+        },
+        {
+          "id": "tag-3",
+          "x": 75,
+          "y": 88,
+          "price": 19.99,
+          "currency": "$",
+          "name": "Multi tags 3"
         }
       ]
     },
@@ -83,17 +101,7 @@
       "url": "https://picsum.photos/800/1200?random=6",
       "width": 900,
       "height": 700,
-      "alt": "Random image 6",
-      "productTags": [
-        {
-          "id": "tag-4",
-          "x": 50,
-          "y": 50,
-          "price": 149.99,
-          "currency": "$",
-          "name": "Đồng hồ thông minh"
-        }
-      ]
+      "alt": "Random image 6"
     },
     {
       "id": "image-7",
@@ -117,17 +125,7 @@
       "url": "https://picsum.photos/800/1200?random=9",
       "width": 700,
       "height": 900,
-      "alt": "Random image 9",
-      "productTags": [
-        {
-          "id": "tag-5",
-          "x": 30,
-          "y": 70,
-          "price": 79.99,
-          "currency": "$",
-          "name": "Kính mát"
-        }
-      ]
+      "alt": "Random image 9"
     },
     {
       "id": "image-10",
@@ -151,17 +149,7 @@
       "url": "https://picsum.photos/800/1200?random=12",
       "width": 700,
       "height": 700,
-      "alt": "Random image 12",
-      "productTags": [
-        {
-          "id": "tag-6",
-          "x": 60,
-          "y": 40,
-          "price": 199.99,
-          "currency": "$",
-          "name": "Tai nghe không dây"
-        }
-      ]
+      "alt": "Random image 12"
     },
     {
       "id": "image-13",
@@ -185,17 +173,7 @@
       "url": "https://picsum.photos/800/1200?random=15",
       "width": 800,
       "height": 700,
-      "alt": "Random image 15",
-      "productTags": [
-        {
-          "id": "tag-7",
-          "x": 40,
-          "y": 60,
-          "price": 59.99,
-          "currency": "$",
-          "name": "Vòng tay"
-        }
-      ]
+      "alt": "Random image 15"
     },
     {
       "id": "image-16",
@@ -219,17 +197,7 @@
       "url": "https://picsum.photos/800/1200?random=18",
       "width": 900,
       "height": 1000,
-      "alt": "Random image 18",
-      "productTags": [
-        {
-          "id": "tag-8",
-          "x": 70,
-          "y": 30,
-          "price": 129.99,
-          "currency": "$",
-          "name": "Áo khoác"
-        }
-      ]
+      "alt": "Random image 18"
     },
     {
       "id": "image-19",
