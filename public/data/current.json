@@ -1,253 +1,253 @@
 {
-    "items": [
-      {
-        "id": "video-1",
-        "type": "video",
-        "url": "placeholder",
-        "width": 1920,
-        "height": 1080,
-        "thumbnail": "placeholder",
-        "alt": "Video from Pexels"
-      },
-      {
-        "id": "image-1",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=1",
-        "width": 800,
-        "height": 1200,
-        "alt": "Random image 1",
-        "productTags": [
-          {
-            "id": "tag-1",
-            "x": 30,
-            "y": 40,
-            "price": 49.99,
-            "currency": "$",
-            "name": "Áo thun trắng"
-          },
-          {
-            "id": "tag-2",
-            "x": 70,
-            "y": 60,
-            "price": 29.99,
-            "currency": "$",
-            "name": "Túi xách"
-          }
-        ]
-      },
-      {
-        "id": "image-2",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=2",
-        "width": 600,
-        "height": 900,
-        "alt": "Random image 2"
-      },
-      {
-        "id": "image-3",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=3",
-        "width": 900,
-        "height": 600,
-        "alt": "Random image 3",
-        "productTags": [
-          {
-            "id": "tag-3",
-            "x": 20,
-            "y": 30,
-            "price": 99.99,
-            "currency": "$",
-            "name": "Giày thể thao"
-          }
-        ]
-      },
-      {
-        "id": "image-4",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=4",
-        "width": 800,
-        "height": 800,
-        "alt": "Random image 4"
-      },
-      {
-        "id": "image-5",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=5",
-        "width": 700,
-        "height": 1000,
-        "alt": "Random image 5"
-      },
-      {
-        "id": "image-6",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=6",
-        "width": 900,
-        "height": 700,
-        "alt": "Random image 6",
-        "productTags": [
-          {
-            "id": "tag-4",
-            "x": 50,
-            "y": 50,
-            "price": 149.99,
-            "currency": "$",
-            "name": "Đồng hồ thông minh"
-          }
-        ]
-      },
-      {
-        "id": "image-7",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=7",
-        "width": 600,
-        "height": 800,
-        "alt": "Random image 7"
-      },
-      {
-        "id": "image-8",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=8",
-        "width": 800,
-        "height": 600,
-        "alt": "Random image 8"
-      },
-      {
-        "id": "image-9",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=9",
-        "width": 700,
-        "height": 900,
-        "alt": "Random image 9",
-        "productTags": [
-          {
-            "id": "tag-5",
-            "x": 30,
-            "y": 70,
-            "price": 79.99,
-            "currency": "$",
-            "name": "Kính mát"
-          }
-        ]
-      },
-      {
-        "id": "image-10",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=10",
-        "width": 900,
-        "height": 900,
-        "alt": "Random image 10"
-      },
-      {
-        "id": "image-11",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=11",
-        "width": 800,
-        "height": 1100,
-        "alt": "Random image 11"
-      },
-      {
-        "id": "image-12",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=12",
-        "width": 700,
-        "height": 700,
-        "alt": "Random image 12",
-        "productTags": [
-          {
-            "id": "tag-6",
-            "x": 60,
-            "y": 40,
-            "price": 199.99,
-            "currency": "$",
-            "name": "Tai nghe không dây"
-          }
-        ]
-      },
-      {
-        "id": "image-13",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=13",
-        "width": 600,
-        "height": 1000,
-        "alt": "Random image 13"
-      },
-      {
-        "id": "image-14",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=14",
-        "width": 900,
-        "height": 800,
-        "alt": "Random image 14"
-      },
-      {
-        "id": "image-15",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=15",
-        "width": 800,
-        "height": 700,
-        "alt": "Random image 15",
-        "productTags": [
-          {
-            "id": "tag-7",
-            "x": 40,
-            "y": 60,
-            "price": 59.99,
-            "currency": "$",
-            "name": "Vòng tay"
-          }
-        ]
-      },
-      {
-        "id": "image-16",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=16",
-        "width": 700,
-        "height": 800,
-        "alt": "Random image 16"
-      },
-      {
-        "id": "image-17",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=17",
-        "width": 800,
-        "height": 900,
-        "alt": "Random image 17"
-      },
-      {
-        "id": "image-18",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=18",
-        "width": 900,
-        "height": 1000,
-        "alt": "Random image 18",
-        "productTags": [
-          {
-            "id": "tag-8",
-            "x": 70,
-            "y": 30,
-            "price": 129.99,
-            "currency": "$",
-            "name": "Áo khoác"
-          }
-        ]
-      },
-      {
-        "id": "image-19",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=19",
-        "width": 600,
-        "height": 600,
-        "alt": "Random image 19"
-      },
-      {
-        "id": "image-20",
-        "type": "image",
-        "url": "https://picsum.photos/800/1200?random=20",
-        "width": 700,
-        "height": 600,
-        "alt": "Random image 20"
-      }
-    ],
-    "nextPage": "next.json",
-    "prevPage": null
-  }
+  "items": [
+    {
+      "id": "video-1",
+      "type": "video",
+      "url": "placeholder",
+      "width": 1920,
+      "height": 1080,
+      "thumbnail": "placeholder",
+      "alt": "Video from Pexels"
+    },
+    {
+      "id": "image-1",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=1",
+      "width": 800,
+      "height": 1200,
+      "alt": "Random image 1",
+      "productTags": [
+        {
+          "id": "tag-1",
+          "x": 1,
+          "y": 1,
+          "price": 49.99,
+          "currency": "$",
+          "name": "Áo thun trắng"
+        },
+        {
+          "id": "tag-2",
+          "x": 5,
+          "y": 6,
+          "price": 29.99,
+          "currency": "$",
+          "name": "Túi xách"
+        }
+      ]
+    },
+    {
+      "id": "image-2",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=2",
+      "width": 600,
+      "height": 900,
+      "alt": "Random image 2"
+    },
+    {
+      "id": "image-3",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=3",
+      "width": 900,
+      "height": 600,
+      "alt": "Random image 3",
+      "productTags": [
+        {
+          "id": "tag-3",
+          "x": 20,
+          "y": 30,
+          "price": 99.99,
+          "currency": "$",
+          "name": "Giày thể thao"
+        }
+      ]
+    },
+    {
+      "id": "image-4",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=4",
+      "width": 800,
+      "height": 800,
+      "alt": "Random image 4"
+    },
+    {
+      "id": "image-5",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=5",
+      "width": 700,
+      "height": 1000,
+      "alt": "Random image 5"
+    },
+    {
+      "id": "image-6",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=6",
+      "width": 900,
+      "height": 700,
+      "alt": "Random image 6",
+      "productTags": [
+        {
+          "id": "tag-4",
+          "x": 50,
+          "y": 50,
+          "price": 149.99,
+          "currency": "$",
+          "name": "Đồng hồ thông minh"
+        }
+      ]
+    },
+    {
+      "id": "image-7",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=7",
+      "width": 600,
+      "height": 800,
+      "alt": "Random image 7"
+    },
+    {
+      "id": "image-8",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=8",
+      "width": 800,
+      "height": 600,
+      "alt": "Random image 8"
+    },
+    {
+      "id": "image-9",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=9",
+      "width": 700,
+      "height": 900,
+      "alt": "Random image 9",
+      "productTags": [
+        {
+          "id": "tag-5",
+          "x": 30,
+          "y": 70,
+          "price": 79.99,
+          "currency": "$",
+          "name": "Kính mát"
+        }
+      ]
+    },
+    {
+      "id": "image-10",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=10",
+      "width": 900,
+      "height": 900,
+      "alt": "Random image 10"
+    },
+    {
+      "id": "image-11",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=11",
+      "width": 800,
+      "height": 1100,
+      "alt": "Random image 11"
+    },
+    {
+      "id": "image-12",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=12",
+      "width": 700,
+      "height": 700,
+      "alt": "Random image 12",
+      "productTags": [
+        {
+          "id": "tag-6",
+          "x": 60,
+          "y": 40,
+          "price": 199.99,
+          "currency": "$",
+          "name": "Tai nghe không dây"
+        }
+      ]
+    },
+    {
+      "id": "image-13",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=13",
+      "width": 600,
+      "height": 1000,
+      "alt": "Random image 13"
+    },
+    {
+      "id": "image-14",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=14",
+      "width": 900,
+      "height": 800,
+      "alt": "Random image 14"
+    },
+    {
+      "id": "image-15",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=15",
+      "width": 800,
+      "height": 700,
+      "alt": "Random image 15",
+      "productTags": [
+        {
+          "id": "tag-7",
+          "x": 40,
+          "y": 60,
+          "price": 59.99,
+          "currency": "$",
+          "name": "Vòng tay"
+        }
+      ]
+    },
+    {
+      "id": "image-16",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=16",
+      "width": 700,
+      "height": 800,
+      "alt": "Random image 16"
+    },
+    {
+      "id": "image-17",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=17",
+      "width": 800,
+      "height": 900,
+      "alt": "Random image 17"
+    },
+    {
+      "id": "image-18",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=18",
+      "width": 900,
+      "height": 1000,
+      "alt": "Random image 18",
+      "productTags": [
+        {
+          "id": "tag-8",
+          "x": 70,
+          "y": 30,
+          "price": 129.99,
+          "currency": "$",
+          "name": "Áo khoác"
+        }
+      ]
+    },
+    {
+      "id": "image-19",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=19",
+      "width": 600,
+      "height": 600,
+      "alt": "Random image 19"
+    },
+    {
+      "id": "image-20",
+      "type": "image",
+      "url": "https://picsum.photos/800/1200?random=20",
+      "width": 700,
+      "height": 600,
+      "alt": "Random image 20"
+    }
+  ],
+  "nextPage": "next.json",
+  "prevPage": null
+}
