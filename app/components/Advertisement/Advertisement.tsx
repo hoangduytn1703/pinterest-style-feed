@@ -13,14 +13,14 @@ export function Advertisement({ ad }: AdvertisementProps) {
   const [hasError, setHasError] = useState(false);
   const [wasIntersected, setWasIntersected] = useState(false);
 
-  // Theo dõi khi phần tử đã từng hiển thị
+  // Follow when the element has been displayed
   useEffect(() => {
     if (isIntersecting && !wasIntersected) {
       setWasIntersected(true);
     }
   }, [isIntersecting, wasIntersected]);
 
-  // Sử dụng Picsum Photos thay vì Unsplash
+  // Use Picsum Photos instead of Unsplash
   const imageUrl = `https://picsum.photos/${ad.width}/${ad.height}?random=${ad.id}`;
 
   const handleImageLoad = () => {
@@ -28,9 +28,9 @@ export function Advertisement({ ad }: AdvertisementProps) {
   };
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    console.error('Hình ảnh quảng cáo không tải được');
+    console.error('Advertisement image cannot be loaded');
     setHasError(true);
-    e.currentTarget.src = `https://via.placeholder.com/${ad.width}x${ad.height}?text=Quảng+cáo`;
+    e.currentTarget.src = `https://via.placeholder.com/${ad.width}x${ad.height}?text=Advertisement`;
   };
 
   return (
@@ -49,7 +49,7 @@ export function Advertisement({ ad }: AdvertisementProps) {
             onError={handleImageError}
             style={{ display: isLoaded ? 'block' : 'none' }}
           />
-          {isLoaded && <div className={styles.adLabel}>Quảng cáo</div>}
+          {isLoaded && <div className={styles.adLabel}>Advertisement</div>}
         </>
       )}
     </div>

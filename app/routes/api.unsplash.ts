@@ -22,7 +22,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     
     return json({ url: imageUrl });
   } catch (error) {
-    console.error('Lỗi khi tải hình ảnh từ Unsplash:', error);
-    return json({ error: 'Không thể tải hình ảnh từ Unsplash' }, { status: 500 });
+    console.error('Error loading image from Unsplash:', error);
+    return json({ error: 'Unable to load image from Unsplash' }, { status: 500 });
   }
 }

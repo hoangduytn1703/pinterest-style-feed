@@ -18,16 +18,16 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Lỗi không mong muốn:', error, errorInfo);
+    console.error('Unexpected error:', error, errorInfo);
   }
 
   public render() {
     if (this.state.hasError) {
       return (
         <div style={{ textAlign: 'center', padding: '20px' }}>
-          <h2>Đã xảy ra lỗi</h2>
+          <h2>An error has occurred</h2>
           <button onClick={() => window.location.reload()}>
-            Tải lại trang
+            Reload page
           </button>
         </div>
       );

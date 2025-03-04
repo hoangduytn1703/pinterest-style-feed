@@ -25,9 +25,9 @@ export function FeedContainer() {
   } = usePagination();
   const prevPaginatedItemsRef = useRef<FeedItem[]>([]);
 
-  // Sử dụng dữ liệu từ hook usePagination
+  // Use data from usePagination hook
   useEffect(() => {
-    // Kiểm tra xem paginatedItems có thực sự thay đổi không
+    // Check if paginatedItems has actually changed
     const paginatedItemsChanged = 
       JSON.stringify(prevPaginatedItemsRef.current) !== JSON.stringify(paginatedItems);
     
@@ -35,7 +35,7 @@ export function FeedContainer() {
       prevPaginatedItemsRef.current = paginatedItems;
       
       if (paginatedItems.length > 0) {
-        // Tách quảng cáo và các mục khác
+        // Separate advertisements and other items
         const ads = paginatedItems.filter(
           (item) => item.type === "advertisement"
         ) as AdvertisementType[];
@@ -49,18 +49,18 @@ export function FeedContainer() {
         setError(null);
       } else if (!isLoading && paginatedItems.length === 0) {
         setError(
-          "Không có dữ liệu để hiển thị. Vui lòng kiểm tra kết nối mạng và thử lại."
+          "No data to display. Please check your network connection and try again."
         );
       }
     }
   }, [paginatedItems, isLoading]);
 
-  // Cập nhật trạng thái loading từ hook
+  // Update loading state from hook
   useEffect(() => {
     setLoading(isLoading);
   }, [isLoading]);
 
-  // Xử lý vuốt để chuyển trang
+  // Handle swipe to change page
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
@@ -74,13 +74,13 @@ export function FeedContainer() {
 
   const handleTouchEnd = useCallback(() => {
     const diff = touchStartX.current - touchEndX.current;
-    const threshold = 100; // Ngưỡng để xác định vuốt
+    const threshold = 100; // Threshold to determine swipe
 
     if (diff > threshold) {
-      // Vuốt sang trái -> trang tiếp theo
+      // Swipe left -> next page
       if (nextPage) loadNextPage();
     } else if (diff < -threshold) {
-      // Vuốt sang phải -> trang trước
+      // Swipe right -> previous page
       loadPrevPage();
     }
   }, [nextPage, loadNextPage, loadPrevPage]);
@@ -100,34 +100,34 @@ export function FeedContainer() {
     };
   }, [handleTouchStart, handleTouchMove, handleTouchEnd]);
 
-  // Tìm quảng cáo theo adIndex
+  // Find advertisement by adIndex
   const findAdvertisement = useCallback((adIndex: number) => {
     return advertisements.find((ad) => ad.adIndex === adIndex);
   }, [advertisements]);
 
-  // Tạo danh sách các mục hiển thị, bao gồm cả quảng cáo
+  // Create list of display items, including advertisements
   const getDisplayItems = useCallback(() => {
-    // Tách video đầu tiên ra khỏi danh sách
+    // Separate first video from the list
     const firstVideo = feedItems.find((item) => item.type === "video");
     const otherItems = feedItems.filter((item) => item !== firstVideo);
 
-    // Danh sách các vị trí quảng cáo theo yêu cầu
+    // List of advertisement positions as per requirement
     const adPositions = [1, 2, 3, 5, 8, 13];
 
-    // Mảng kết quả
+    // Result array
     const result: FeedItem[] = [];
 
-    // Thêm video đầu tiên vào đầu danh sách nếu có
+    // Add first video to the beginning of the list if it exists
     if (firstVideo) {
       result.push(firstVideo);
     }
 
-    // Thêm các mục khác và quảng cáo vào vị trí thích hợp
+    // Add other items and advertisements to the appropriate positions
     otherItems.forEach((item, index) => {
-      // Thêm mục hiện tại
+      // Add current item
       result.push(item);
 
-      // Kiểm tra xem có cần thêm quảng cáo không
+      // Check if an advertisement is needed
       const currentPosition = index + 1;
       if (adPositions.includes(currentPosition)) {
         const ad = findAdvertisement(currentPosition);
@@ -142,19 +142,19 @@ export function FeedContainer() {
 
   const displayItems = getDisplayItems();
 
-  // Tách video đầu tiên và các mục khác
+  // Separate first video and other items
   const mainVideo = displayItems.find((item) => item.type === "video");
   const gridItems = displayItems.filter((item) => item !== mainVideo);
 
-  // Tính toán chiều cao cho mỗi item trong grid
+  // Calculate height for each item in the grid
   useEffect(() => {
     const resizeGridItems = () => {
       const grid = document.querySelector(`.${styles.masonryGrid}`);
       if (!grid) return;
 
-      // Sử dụng giá trị mặc định nếu không thể lấy được từ CSS
-      let rowHeight = 5; // Giá trị mặc định giảm xuống
-      let rowGap = 16; // Khoảng cách cố định 16px
+      // Use default value if cannot get from CSS
+      let rowHeight = 5; // Default value decreased
+      let rowGap = 16; // Fixed 16px gap
 
       try {
         const gridStyle = getComputedStyle(grid);
@@ -175,7 +175,7 @@ export function FeedContainer() {
         if (content) {
           try {
             const contentHeight = content.getBoundingClientRect().height;
-            // Đảm bảo chiều cao tối thiểu là 100px
+            // Ensure minimum height is 100px
             const minHeight = 100;
             const actualHeight = Math.max(contentHeight, minHeight);
             const rowSpan = Math.ceil(
@@ -189,13 +189,13 @@ export function FeedContainer() {
       });
     };
 
-    // Thêm setTimeout để đảm bảo DOM đã được render
+    // Add setTimeout to ensure DOM is rendered
     setTimeout(resizeGridItems, 100);
 
-    // Thực hiện resize khi component mount và khi window resize
+    // Perform resize when component mounts and when window resizes
     window.addEventListener("resize", resizeGridItems);
 
-    // Thực hiện resize khi hình ảnh load xong
+    // Perform resize when image loads
     const images = document.querySelectorAll("img");
     images.forEach((img) => {
       if (img.complete) {
@@ -205,7 +205,7 @@ export function FeedContainer() {
       }
     });
 
-    // Thêm một interval để kiểm tra và resize định kỳ
+    // Add an interval to check and resize periodically
     const intervalId = setInterval(resizeGridItems, 1000);
 
     return () => {
@@ -217,7 +217,7 @@ export function FeedContainer() {
     };
   }, [displayItems]);
 
-  // Thêm IntersectionObserver để load ảnh theo viewport
+  // Add IntersectionObserver to load images as they come into view
   useEffect(() => {
     const options = {
       root: null,
@@ -271,14 +271,14 @@ export function FeedContainer() {
 
   return (
     <div className={styles.container} ref={containerRef}>
-      {/* Video chính ở đầu trang */}
+      {/* Main video at the top of the page */}
       {mainVideo && mainVideo.type === "video" && (
         <div className={styles.mainVideo}>
           <VideoCard video={mainVideo} />
         </div>
       )}
 
-      {/* Grid Masonry cho các mục khác */}
+      {/* Masonry grid for other items */}
       <div className={styles.masonryGrid}>
         {gridItems.map((item) => {
           if (item.type === "image") {
@@ -304,7 +304,7 @@ export function FeedContainer() {
         })}
       </div>
 
-      {/* Nút điều hướng trang */}
+      {/* Navigation buttons */}
       <div className={styles.pagination}>
         <button
           onClick={loadPrevPage}
@@ -312,14 +312,14 @@ export function FeedContainer() {
           className={styles.paginationButton}
         >
           <span className={styles.buttonIcon}>←</span>
-          Trang trước
+          Previous page
         </button>
         <button
           onClick={loadNextPage}
           disabled={!nextPage}
           className={styles.paginationButton}
         >
-          Trang tiếp
+          Next page
           <span
             className={styles.buttonIcon}
             style={{ marginLeft: "8px", marginRight: 0 }}

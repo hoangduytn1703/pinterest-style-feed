@@ -6,13 +6,13 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const query = url.searchParams.get('query') || 'nature';
   const perPage = url.searchParams.get('per_page') || '5';
   
-  // Sử dụng API key từ biến môi trường
+  // Use API key from environment variable
   const PEXELS_API_KEY = process.env.PEXELS_API_KEY;
   
   if (!PEXELS_API_KEY || PEXELS_API_KEY === 'YOUR_PEXELS_API_KEY') {
-    console.error('Thiếu PEXELS_API_KEY trong biến môi trường');
+    console.error('Missing PEXELS_API_KEY in environment variables');
     return json({ 
-      error: 'Cấu hình API key không hợp lệ',
+      error: 'Invalid API key configuration',
       videos: [] 
     }, { status: 500 });
   }
@@ -34,10 +34,10 @@ export async function loader({ request }: LoaderFunctionArgs) {
     const data = await response.json();
     return json(data);
   } catch (error) {
-    console.error('Lỗi khi tải video từ Pexels:', error);
-    // Trả về mảng rỗng để tránh lỗi undefined
+    console.error('Error loading videos from Pexels:', error);
+    // Return empty array to avoid undefined error
     return json({ 
-      error: 'Không thể tải video từ Pexels',
+      error: 'Unable to load videos from Pexels',
       videos: [] 
     }, { status: 500 });
   }
