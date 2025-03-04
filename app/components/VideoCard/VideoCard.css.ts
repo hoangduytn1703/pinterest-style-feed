@@ -6,6 +6,11 @@ const fadeIn = keyframes({
   "100%": { opacity: 1 },
 });
 
+const shimmer = keyframes({
+  "0%": { backgroundPosition: "-200% 0" },
+  "100%": { backgroundPosition: "200% 0" }
+});
+
 export const container = style([
   sprinkles({
     width: "100%",
@@ -88,13 +93,7 @@ export const skeleton = style({
   backgroundSize: "200% 100%",
   backgroundPosition: "0 0",
   borderRadius: "8px",
-  animation: "shimmer 1.5s infinite linear",
-  "@keyframes": {
-    shimmer: {
-      "0%": { backgroundPosition: "-200% 0" },
-      "100%": { backgroundPosition: "200% 0" },
-    },
-  },
+  animation: `${shimmer} 1.5s infinite linear`,
 });
 
 export const errorContainer = style({

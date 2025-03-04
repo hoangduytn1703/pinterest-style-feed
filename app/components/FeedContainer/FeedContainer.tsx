@@ -261,7 +261,6 @@ export const FeedContainer = () => {
     return (
       <div className={styles.loading}>
         <div className={styles.loadingSpinner}></div>
-        <p>Đang tải dữ liệu...</p>
       </div>
     );
   }
