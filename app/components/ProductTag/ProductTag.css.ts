@@ -32,17 +32,6 @@ export const tagIndicator = style({
   },
 });
 
-export const tagInfo = style({
-  position: "absolute",
-  backgroundColor: vars.colors.white,
-  borderRadius: vars.radii.md,
-  padding: vars.space.md,
-  boxShadow: vars.shadows.lg,
-  zIndex: 3,
-  minWidth: "150px",
-  animation: `${fadeIn} ${vars.transitions.normal}`,
-});
-
 export const tagName = style({
   fontSize: vars.fontSizes.md,
   fontWeight: "bold",
@@ -53,12 +42,4 @@ export const tagPrice = style({
   fontSize: vars.fontSizes.lg,
   color: vars.colors.primary,
   fontWeight: "bold",
-});
-
-export const tagArrow = style({
-  position: "absolute",
-  width: "12px",
-  height: "12px",
-  backgroundColor: vars.colors.white,
-  transform: "rotate(45deg)",
 });
