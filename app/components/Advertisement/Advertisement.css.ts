@@ -25,7 +25,7 @@ export const advertisement = style([
     position: "relative",
     borderRadius: "8px",
     overflow: "hidden",
-    backgroundColor: "#fff8e1", // Màu nền nhẹ để phân biệt quảng cáo
+    backgroundColor: "#fff8e1",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
   },
 ]);

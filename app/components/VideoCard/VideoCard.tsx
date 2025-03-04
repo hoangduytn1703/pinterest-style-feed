@@ -8,7 +8,7 @@ interface VideoCardProps {
 }
 
 export function VideoCard({ video }: VideoCardProps) {
-  console.log("🚀 ~ VideoCard ~ video:", video)
+  console.log("🚀 ~ VideoCard ~ video:", video);
   const [error, setError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const { videoRef, isPlaying, togglePlayback } = useVideoPlayback();
@@ -23,7 +23,7 @@ export function VideoCard({ video }: VideoCardProps) {
   };
 
   useEffect(() => {
-    // Đặt timeout để hiển thị skeleton ít nhất 500ms
+    // Set timeout to show skeleton at least 500ms
     const timer = setTimeout(() => {
       if (!isLoaded) {
         const videoElement = videoRef.current;
@@ -60,12 +60,12 @@ export function VideoCard({ video }: VideoCardProps) {
             style={{ display: isLoaded ? "block" : "none" }}
           >
             <source src={video.url} type="video/mp4" />
-            <track 
-              kind="captions" 
-              src="" 
-              label="Tiếng Việt" 
-              srcLang="vi" 
-              default 
+            <track
+              kind="captions"
+              src=""
+              label="Tiếng Việt"
+              srcLang="vi"
+              default
             />
             Trình duyệt của bạn không hỗ trợ thẻ video.
           </video>

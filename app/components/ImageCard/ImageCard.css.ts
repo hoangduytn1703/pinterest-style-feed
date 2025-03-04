@@ -1,7 +1,7 @@
 import { style, keyframes } from "@vanilla-extract/css";
 import { sprinkles } from "../../styles/sprinkles.css";
 
-// Thêm hiệu ứng fade-in
+// Add fade-in effect
 const fadeIn = keyframes({
   "0%": { opacity: 0 },
   "100%": { opacity: 1 },
@@ -48,7 +48,7 @@ export const image = style([
   },
 ]);
 
-// Thêm skeleton loading
+// Add skeleton loading
 export const skeleton = style({
   width: "100%",
   height: "100%",

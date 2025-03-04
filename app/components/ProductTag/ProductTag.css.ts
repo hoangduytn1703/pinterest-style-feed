@@ -43,3 +43,10 @@ export const tagPrice = style({
   color: vars.colors.primary,
   fontWeight: "bold",
 });
+
+export const tooltipContainer = style({
+  padding: vars.space.sm,
+  backgroundColor: vars.colors.white,
+  boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+  borderRadius: vars.radii.md,
+});

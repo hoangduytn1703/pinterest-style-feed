@@ -1,9 +1,9 @@
-import { useState, useRef } from 'react';
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
-import 'tippy.js/themes/light.css';
-import type { ProductTag as ProductTagType } from '../../models/types';
-import * as styles from './ProductTag.css';
+import { useState, useRef } from "react";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/themes/light.css";
+import type { ProductTag as ProductTagType } from "../../models/types";
+import * as styles from "./ProductTag.css";
 
 interface ProductTagProps {
   tag: ProductTagType;
@@ -13,14 +13,14 @@ interface ProductTagProps {
 
 export const ProductTag = ({ tag }: ProductTagProps) => {
   const [isVisible, setIsVisible] = useState(false);
-  
-  // Tính toán vị trí tag dựa trên x, y (phần trăm)
+
+  // Calculate tag position based on x, y (percentage)
   const tagStyle = {
     left: `${tag.x}%`,
     top: `${tag.y}%`,
   };
-  
-  // Nội dung tooltip
+
+  // Tooltip content
   const content = (
     <div>
       <div className={styles.tagName}>{tag.name}</div>
@@ -29,7 +29,7 @@ export const ProductTag = ({ tag }: ProductTagProps) => {
       </div>
     </div>
   );
-  
+
   return (
     <Tippy
       content={content}
@@ -42,13 +42,22 @@ export const ProductTag = ({ tag }: ProductTagProps) => {
       appendTo="parent"
       arrow={true}
       animation="fade"
+      onMount={() => {
+        // Add class to handle animation when shown
+        document.body.classList.add("tippy-active");
+      }}
+      onHide={() => {
+        document.body.classList.remove("tippy-active");
+      }}
     >
-      <div 
-        className={styles.tagIndicator} 
+      <div
+        className={styles.tagIndicator}
         style={tagStyle}
         onClick={() => setIsVisible(!isVisible)}
+        onMouseEnter={() => setIsVisible(true)}
+        onMouseLeave={() => setIsVisible(false)}
         aria-label={`Product tag: ${tag.name}`}
       />
     </Tippy>
   );
-}
+};

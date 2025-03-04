@@ -6,13 +6,13 @@ export function useVideoPlayback() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [wasPlaying, setWasPlaying] = useState(false);
 
-  // Sử dụng hook useIntersectionObserver
+  // Use useIntersectionObserver hook
   const { ref, isIntersecting } = useIntersectionObserver({
     threshold: 0.5,
     rootMargin: "0px",
   });
 
-  // Callback để kết hợp refs
+  // Callback to combine refs
   const setVideoRef = useCallback(
     (node: HTMLVideoElement | null) => {
       videoRef.current = node;
@@ -21,12 +21,12 @@ export function useVideoPlayback() {
     [ref]
   );
 
-  // Xử lý khi video vào hoặc ra khỏi viewport
+  // Handle when video enters or leaves viewport
   useEffect(() => {
     if (!videoRef.current) return;
 
     if (isIntersecting) {
-      // Khi video vào viewport và đã từng được phát trước đó
+      // When video enters viewport and has been played before
       if (wasPlaying) {
         videoRef.current
           .play()
@@ -39,9 +39,9 @@ export function useVideoPlayback() {
           });
       }
     } else {
-      // Khi video ra khỏi viewport
+      // When video leaves viewport
       if (!videoRef.current.paused) {
-        // Lưu trạng thái đang phát
+        // Save playing state
         setWasPlaying(true);
         videoRef.current.pause();
         setIsPlaying(false);
@@ -57,7 +57,7 @@ export function useVideoPlayback() {
         .play()
         .then(() => {
           setIsPlaying(true);
-          setWasPlaying(true); // Đánh dấu video đã được phát
+          setWasPlaying(true); // Mark video as played
         })
         .catch((error) => {
           console.error("Lỗi khi phát video:", error);
@@ -66,7 +66,7 @@ export function useVideoPlayback() {
     } else {
       videoRef.current.pause();
       setIsPlaying(false);
-      setWasPlaying(false); // Đánh dấu người dùng đã dừng video
+      setWasPlaying(false); // Mark user as stopped video
     }
   };
 

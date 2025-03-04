@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useIntersectionObserver } from '~/hooks/useIntersectionObserver';
-import type { Advertisement as AdvertisementType } from '~/models/types';
-import * as styles from './Advertisement.css';
+import { useState, useEffect, useCallback } from "react";
+import { useIntersectionObserver } from "~/hooks/useIntersectionObserver";
+import type { Advertisement as AdvertisementType } from "~/models/types";
+import * as styles from "./Advertisement.css";
 
 interface AdvertisementProps {
   ad: AdvertisementType;
@@ -22,10 +22,10 @@ export function Advertisement({ ad }: AdvertisementProps) {
     }
   }, [isIntersecting, wasIntersected]);
 
-  // Sử dụng URL cố định thay vì ngẫu nhiên để tăng khả năng cache
+  // Use random image url instead of static url
   const imageUrl = `https://picsum.photos/seed/${ad.id}/${ad.width}/${ad.height}`;
 
-  // Thêm hàm tải trước hình ảnh
+  // Add function to preload image
   const preloadImage = useCallback(async () => {
     if (retryCount >= MAX_RETRIES) {
       setHasError(true);
@@ -41,13 +41,16 @@ export function Advertisement({ ad }: AdvertisementProps) {
       });
       setIsLoaded(true);
     } catch (error) {
-      console.error(`Lỗi khi tải ảnh quảng cáo (lần thử ${retryCount + 1}):`, error);
-      setRetryCount(prev => prev + 1);
-      setTimeout(preloadImage, 1000); // Thử lại sau 1 giây
+      console.error(
+        `Lỗi khi tải ảnh quảng cáo (lần thử ${retryCount + 1}):`,
+        error
+      );
+      setRetryCount((prev) => prev + 1);
+      setTimeout(preloadImage, 1000); // Retry after 1 second to avoid rate limit
     }
   }, [imageUrl, retryCount]);
 
-  // Tải trước hình ảnh khi component hiển thị trong viewport
+  // Preload image when component is displayed in viewport
   useEffect(() => {
     if (isIntersecting && !isLoaded && !hasError) {
       preloadImage();
@@ -59,9 +62,9 @@ export function Advertisement({ ad }: AdvertisementProps) {
   };
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    console.error('Advertisement image cannot be loaded');
+    console.error("Advertisement image cannot be loaded");
     if (retryCount < MAX_RETRIES) {
-      setRetryCount(prev => prev + 1);
+      setRetryCount((prev) => prev + 1);
       e.currentTarget.src = `https://picsum.photos/seed/${ad.id}-${retryCount}/${ad.width}/${ad.height}`;
     } else {
       setHasError(true);
@@ -70,20 +73,23 @@ export function Advertisement({ ad }: AdvertisementProps) {
   };
 
   return (
-    <div ref={ref as React.RefObject<HTMLDivElement>} className={styles.advertisement}>
+    <div
+      ref={ref as React.RefObject<HTMLDivElement>}
+      className={styles.advertisement}
+    >
       {(isIntersecting || wasIntersected) && (
         <>
           {!isLoaded && !hasError && <div className={styles.skeleton}></div>}
           <img
             src={imageUrl}
-            alt={ad.alt || 'Advertisement'}
+            alt={ad.alt || "Advertisement"}
             className={styles.adImage}
             width={ad.width}
             height={ad.height}
             loading="lazy"
             onLoad={handleImageLoad}
             onError={handleImageError}
-            style={{ display: isLoaded ? 'block' : 'none' }}
+            style={{ display: isLoaded ? "block" : "none" }}
           />
           {isLoaded && <div className={styles.adLabel}>Advertisement</div>}
         </>

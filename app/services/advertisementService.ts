@@ -5,43 +5,43 @@ const FIBONACCI_POSITIONS = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
 
 export const fetchAdvertisements = async (): Promise<Advertisement[]> => {
   try {
-    // Thêm tham số cache-busting để tránh cache cũ
+    // Add cache-busting parameter to avoid old cache
     const response = await fetch(`/data/advertisement.json?_=${Date.now()}`);
-    
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    
+
     const ads = (await response.json()) as Advertisement[];
 
-    // Đặt adIndex cho mỗi quảng cáo theo yêu cầu
+    // Set adIndex for each advertisement as required
     const adPositions = [1, 2, 3, 5, 8, 13];
 
-    // Tải trước hình ảnh quảng cáo
+    // Preload advertisement images
     return Promise.all(
       ads.map(async (ad, index) => {
-        // Đảm bảo chỉ sử dụng đủ số lượng quảng cáo cần thiết
+        // Ensure only using the required number of advertisements
         if (index < adPositions.length) {
-          // Sử dụng URL cố định thay vì ngẫu nhiên
+          // Use fixed URL instead of random
           const imageUrl = `https://picsum.photos/seed/${ad.id}/${ad.width}/${ad.height}`;
-          
-          // Tải trước hình ảnh
+
+          // Preload image
           try {
             await new Promise((resolve) => {
               const img = new Image();
               img.onload = resolve;
-              img.onerror = resolve; // Vẫn tiếp tục ngay cả khi có lỗi
+              img.onerror = resolve; // Still continue even if there's an error
               img.src = imageUrl;
-              // Đặt timeout để tránh chờ quá lâu
+              // Set timeout to avoid waiting too long
               setTimeout(resolve, 2000);
             });
           } catch (e) {
-            console.error("Lỗi khi tải trước hình ảnh quảng cáo:", e);
+            console.error("Error preloading advertisement image:", e);
           }
-          
+
           return {
             ...ad,
-            url: imageUrl, // Cập nhật URL
+            url: imageUrl, // Update URL
             adIndex: adPositions[index],
           };
         }
@@ -52,7 +52,7 @@ export const fetchAdvertisements = async (): Promise<Advertisement[]> => {
     console.error("Lỗi khi tải quảng cáo:", error);
     return [];
   }
-}
+};
 
 export const getUnsplashImageUrl = async (
   width: number,
@@ -74,7 +74,7 @@ export const getUnsplashImageUrl = async (
     // fallback to picsum if unsplash fails
     return `https://picsum.photos/${width}/${height}?random=${Math.random()}`;
   }
-}
+};
 
 export function shouldInsertAdvertisement(index: number): boolean {
   return FIBONACCI_POSITIONS.includes(index);
