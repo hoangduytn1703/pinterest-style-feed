@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { usePagination } from "../../hooks/usePagination";
 import { ImageCard } from "../../components/ImageCard/ImageCard";
 import { VideoCard } from "../../components/VideoCard/VideoCard";
@@ -23,26 +23,35 @@ export function FeedContainer() {
     loadNextPage,
     loadPrevPage,
   } = usePagination();
+  const prevPaginatedItemsRef = useRef<FeedItem[]>([]);
 
   // Sử dụng dữ liệu từ hook usePagination
   useEffect(() => {
-    if (paginatedItems.length > 0) {
-      // Tách quảng cáo và các mục khác
-      const ads = paginatedItems.filter(
-        (item) => item.type === "advertisement"
-      ) as AdvertisementType[];
-      const items = paginatedItems.filter(
-        (item) => item.type !== "advertisement"
-      );
+    // Kiểm tra xem paginatedItems có thực sự thay đổi không
+    const paginatedItemsChanged = 
+      JSON.stringify(prevPaginatedItemsRef.current) !== JSON.stringify(paginatedItems);
+    
+    if (paginatedItemsChanged) {
+      prevPaginatedItemsRef.current = paginatedItems;
+      
+      if (paginatedItems.length > 0) {
+        // Tách quảng cáo và các mục khác
+        const ads = paginatedItems.filter(
+          (item) => item.type === "advertisement"
+        ) as AdvertisementType[];
+        const items = paginatedItems.filter(
+          (item) => item.type !== "advertisement"
+        );
 
-      setFeedItems(items);
-      setAdvertisements(ads);
-      setLoading(false);
-      setError(null);
-    } else if (!isLoading && paginatedItems.length === 0) {
-      setError(
-        "Không có dữ liệu để hiển thị. Vui lòng kiểm tra kết nối mạng và thử lại."
-      );
+        setFeedItems(items);
+        setAdvertisements(ads);
+        setLoading(false);
+        setError(null);
+      } else if (!isLoading && paginatedItems.length === 0) {
+        setError(
+          "Không có dữ liệu để hiển thị. Vui lòng kiểm tra kết nối mạng và thử lại."
+        );
+      }
     }
   }, [paginatedItems, isLoading]);
 
@@ -55,15 +64,15 @@ export function FeedContainer() {
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
-  const handleTouchStart = (e: TouchEvent) => {
+  const handleTouchStart = useCallback((e: TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
-  };
+  }, []);
 
-  const handleTouchMove = (e: TouchEvent) => {
+  const handleTouchMove = useCallback((e: TouchEvent) => {
     touchEndX.current = e.touches[0].clientX;
-  };
+  }, []);
 
-  const handleTouchEnd = () => {
+  const handleTouchEnd = useCallback(() => {
     const diff = touchStartX.current - touchEndX.current;
     const threshold = 100; // Ngưỡng để xác định vuốt
 
@@ -74,7 +83,7 @@ export function FeedContainer() {
       // Vuốt sang phải -> trang trước
       loadPrevPage();
     }
-  };
+  }, [nextPage, loadNextPage, loadPrevPage]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -89,15 +98,15 @@ export function FeedContainer() {
       container.removeEventListener("touchmove", handleTouchMove);
       container.removeEventListener("touchend", handleTouchEnd);
     };
-  }, []);
+  }, [handleTouchStart, handleTouchMove, handleTouchEnd]);
 
   // Tìm quảng cáo theo adIndex
-  const findAdvertisement = (adIndex: number) => {
+  const findAdvertisement = useCallback((adIndex: number) => {
     return advertisements.find((ad) => ad.adIndex === adIndex);
-  };
+  }, [advertisements]);
 
   // Tạo danh sách các mục hiển thị, bao gồm cả quảng cáo
-  const getDisplayItems = () => {
+  const getDisplayItems = useCallback(() => {
     // Tách video đầu tiên ra khỏi danh sách
     const firstVideo = feedItems.find((item) => item.type === "video");
     const otherItems = feedItems.filter((item) => item !== firstVideo);
@@ -129,7 +138,7 @@ export function FeedContainer() {
     });
 
     return result;
-  };
+  }, [feedItems, findAdvertisement]);
 
   const displayItems = getDisplayItems();
 
