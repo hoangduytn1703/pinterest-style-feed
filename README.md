@@ -6,12 +6,19 @@ Welcome to my Remix project! This project is designed to provide a modern web de
 
 This project aims to create a scalable and efficient web application using the Remix framework. By leveraging Remix, we ensure that my application is optimized for both server-side and client-side rendering, providing a seamless user experience. The project is structured to facilitate easy development, testing, and deployment, making it suitable for both small and large-scale applications.
 
+## NOTE
+
+- Because Unsplash only allows 50 requests per hour, sometimes it will be an error and will be switched to Picsum with ads images.
+- I cannot use coverr.io as suggested of the course because submitting an account takes too long.
+
 ## Documentation
 
 - 📖 [Remix Documentation](https://remix.run/docs)
 - 📦 [Tippy.js Documentation](https://atomiks.github.io/tippyjs/) - Used for creating tooltips.
 - 📦 [React Masonry CSS](https://github.com/paulcollett/react-masonry-css) - Used for creating responsive masonry layouts.
 - 📦 [Intersection Observer](https://github.com/w3c/IntersectionObserver) - Used for observing changes in the intersection of a target element.
+- 📦 [unsplash-js](https://github.com/unsplash/unsplash-js) + [picsum.photos](https://picsum.photos/) - Used for fetching images from Unsplash API and Picsum.
+- 📦 [pexels](https://pexels.com) - Used for fetching first video (I cannot use coverr.io as suggested of the course because submitting an account takes too long).
 
 ## Installation
 
@@ -67,6 +74,38 @@ Make sure to deploy the output of `npm run build`:
 ## Styling
 
 This project uses [Vanilla Extract CSS](https://vanilla-extract.style/) for styling, providing a type-safe, zero-runtime CSS-in-TypeScript approach. This allows for a highly customizable and maintainable styling solution. You can explore the [Vanilla Extract documentation](https://vanilla-extract.style/documentation) for more information on how to utilize it effectively in your project.
+
+## Image Loading Strategy
+
+### Primary Source (Unsplash API)
+
+- First attempt to load images from Unsplash API using specific collections for quality assurance
+
+### Caching Layer
+
+- Cache Unsplash results for 1 hour to reduce API calls and avoid rate limiting
+
+### Error Handling & Fallbacks
+
+1. **When Unsplash API fails:**
+
+   - Check local cache
+   - If no cache exists, fallback to Picsum
+
+2. **When Picsum fails:**
+
+   - Use placeholder image with similar dimensions
+
+3. **Rate Limiting Protection:**
+   - Limit to 45 requests/hour (below Unsplash's actual limit of 50)
+   - Automatically switch to fallback when limit is reached
+
+### Load Order:
+
+1. Check local cache
+2. Unsplash API
+3. Picsum (fallback)
+4. Placeholder (final fallback)
 
 ## Contributing
 

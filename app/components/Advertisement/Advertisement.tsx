@@ -23,7 +23,7 @@ export function Advertisement({ ad }: AdvertisementProps) {
     }
   }, [isIntersecting, wasIntersected]);
 
-  // Thay đổi cách lấy imageUrl
+  //Get Unsplash image url, if failed, fallback to placeholder
   const getUnsplashUrl = useCallback(async () => {
     try {
       const response = await fetch(`/api/unsplash?id=${ad.id}`);
