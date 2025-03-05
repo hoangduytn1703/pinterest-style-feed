@@ -28,7 +28,6 @@ export const pulseAnimation = style({
   animation: `${pulse} 2s infinite ease-in-out`,
 });
 
-// Fade in từ dưới lên
 export const fadeInUp = keyframes({
   "0%": {
     opacity: 0,
@@ -40,7 +39,7 @@ export const fadeInUp = keyframes({
   },
 });
 
-// Fade in với scale
+// Fade in with scale
 export const fadeInScale = keyframes({
   "0%": {
     opacity: 0,

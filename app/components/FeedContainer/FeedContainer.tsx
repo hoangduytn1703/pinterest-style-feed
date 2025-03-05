@@ -276,7 +276,7 @@ export const FeedContainer = () => {
           onClick={() => window.location.reload()}
           className={styles.paginationButton}
         >
-          Thử lại
+          Try again
         </button>
       </div>
     );
