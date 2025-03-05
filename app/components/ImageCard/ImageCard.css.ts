@@ -27,7 +27,7 @@ export const container = style([
 export const imageCard = style([
   {
     position: "relative",
-    borderRadius: "8px",
+    borderRadius: "0",
     overflow: "hidden",
   },
 ]);

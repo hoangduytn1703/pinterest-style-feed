@@ -8,13 +8,13 @@ export const container = style([
     flexDirection: "column",
   }),
   {
-    gap: "16px",
-    padding: "16px",
+    gap: "8px",
+    padding: "0",
     maxWidth: "1200px",
     margin: "0 auto",
     "@media": {
       "(max-width: 767px)": {
-        padding: "0px",
+        padding: "0",
       },
     },
     animation: `${pageTransition} 0.5s ease-out`,
@@ -26,8 +26,8 @@ export const mainVideo = style([
     width: "100%",
   }),
   {
-    marginBottom: "24px",
-    borderRadius: "8px",
+    marginBottom: "8px",
+    borderRadius: "0",
     overflow: "hidden",
     "@media": {
       "(max-width: 767px)": {
@@ -39,8 +39,8 @@ export const mainVideo = style([
 
 export const masonryGrid = style({
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-  gridGap: "16px",
+  gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+  gap: "8px",
   gridAutoRows: "5px",
   animation: `${fadeInScale} 0.5s ease-out`,
   "@media": {
@@ -77,7 +77,7 @@ export const masonryItem = style({
   ":hover": {
     transform: "translateY(-4px)",
   },
-  borderRadius: "8px",
+  borderRadius: "0",
   overflow: "hidden",
   marginBottom: "0",
 });

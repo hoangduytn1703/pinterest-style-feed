@@ -8,7 +8,7 @@ const fadeIn = keyframes({
 
 const shimmer = keyframes({
   "0%": { backgroundPosition: "-200% 0" },
-  "100%": { backgroundPosition: "200% 0" }
+  "100%": { backgroundPosition: "200% 0" },
 });
 
 export const container = style([
@@ -28,7 +28,7 @@ export const videoCard = style([
   }),
   {
     position: "relative",
-    borderRadius: "8px",
+    borderRadius: "0",
     overflow: "hidden",
     backgroundColor: "#000",
   },
