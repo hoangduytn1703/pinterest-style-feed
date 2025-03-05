@@ -1,5 +1,6 @@
 import { style, keyframes } from "@vanilla-extract/css";
 import { sprinkles } from "../../styles/sprinkles.css";
+import { fadeInScale, pageTransition } from "../../styles/animations.css";
 
 export const container = style([
   sprinkles({
@@ -16,6 +17,7 @@ export const container = style([
         padding: "0px",
       },
     },
+    animation: `${pageTransition} 0.5s ease-out`,
   },
 ]);
 
@@ -40,6 +42,7 @@ export const masonryGrid = style({
   gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
   gridGap: "16px",
   gridAutoRows: "5px",
+  animation: `${fadeInScale} 0.5s ease-out`,
   "@media": {
     "(max-width: 639px)": {
       gridTemplateColumns: "repeat(2, 1fr)",
@@ -69,6 +72,11 @@ export const mobileFullWidthItem = style({
 });
 
 export const masonryItem = style({
+  position: "relative",
+  transition: "transform 0.3s ease, opacity 0.3s ease",
+  ":hover": {
+    transform: "translateY(-4px)",
+  },
   borderRadius: "8px",
   overflow: "hidden",
   marginBottom: "0",
@@ -206,88 +214,87 @@ export const pullSpinner = style({
 });
 
 export const prevButton = style({
-  position: 'fixed',
-  left: '20px',
-  top: '50%',
-  transform: 'translateY(-50%)',
-  width: '50px',
-  height: '50px',
-  borderRadius: '50%',
-  backgroundColor: 'rgba(255, 255, 255, 0.8)',
-  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-  border: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  cursor: 'pointer',
+  position: "fixed",
+  left: "20px",
+  top: "50%",
+  transform: "translateY(-50%)",
+  width: "50px",
+  height: "50px",
+  borderRadius: "50%",
+  backgroundColor: "rgba(255, 255, 255, 0.8)",
+  boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+  border: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  cursor: "pointer",
   zIndex: 10,
-  transition: 'all 0.3s ease',
-  ':hover': {
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+  transition: "all 0.3s ease",
+  ":hover": {
+    backgroundColor: "rgba(255, 255, 255, 0.95)",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
   },
-  ':disabled': {
+  ":disabled": {
     opacity: 0.5,
-    cursor: 'not-allowed',
+    cursor: "not-allowed",
   },
-  '@media': {
-    '(max-width: 767px)': {
-      width: '40px',
-      height: '40px',
-      left: '10px',
-      bottom: '20px',
-      top: 'auto',
-      transform: 'none',
+  "@media": {
+    "(max-width: 767px)": {
+      width: "40px",
+      height: "40px",
+      left: "10px",
+      bottom: "20px",
+      top: "auto",
+      transform: "none",
     },
   },
 });
 
 export const nextButton = style({
-  position: 'fixed',
-  right: '20px',
-  top: '50%',
-  transform: 'translateY(-50%)',
-  width: '50px',
-  height: '50px',
-  borderRadius: '50%',
-  backgroundColor: 'rgba(255, 255, 255, 0.8)',
-  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-  border: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  cursor: 'pointer',
+  position: "fixed",
+  right: "20px",
+  top: "50%",
+  transform: "translateY(-50%)",
+  width: "50px",
+  height: "50px",
+  borderRadius: "50%",
+  backgroundColor: "rgba(255, 255, 255, 0.8)",
+  boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+  border: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  cursor: "pointer",
   zIndex: 10,
-  transition: 'all 0.3s ease',
-  ':hover': {
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+  transition: "all 0.3s ease",
+  ":hover": {
+    backgroundColor: "rgba(255, 255, 255, 0.95)",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
   },
-  ':disabled': {
+  ":disabled": {
     opacity: 0.5,
-    cursor: 'not-allowed',
+    cursor: "not-allowed",
   },
-  '@media': {
-    '(max-width: 767px)': {
-      width: '40px',
-      height: '40px',
-      right: '10px',
-      bottom: '20px',
-      top: 'auto',
-      transform: 'none',
+  "@media": {
+    "(max-width: 767px)": {
+      width: "40px",
+      height: "40px",
+      right: "10px",
+      bottom: "20px",
+      top: "auto",
+      transform: "none",
     },
   },
 });
 
 export const buttonIcon = style({
-  width: '24px',
-  height: '24px',
-  fill: '#333',
-  '@media': {
-    '(max-width: 767px)': {
-      width: '20px',
-      height: '20px',
+  width: "24px",
+  height: "24px",
+  fill: "#333",
+  "@media": {
+    "(max-width: 767px)": {
+      width: "20px",
+      height: "20px",
     },
   },
 });
-

@@ -6,6 +6,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
+import { useEffect } from "react";
 
 import "./tailwind.css";
 import "./styles/tippy.css";
@@ -42,5 +43,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  useEffect(() => {
+    // Add smooth scroll behavior
+    document.documentElement.style.scrollBehavior = "smooth";
+
+    return () => {
+      document.documentElement.style.scrollBehavior = "auto";
+    };
+  }, []);
+
   return <Outlet />;
 }

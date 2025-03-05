@@ -1,5 +1,6 @@
 import { style, keyframes } from "@vanilla-extract/css";
 import { sprinkles } from "../../styles/sprinkles.css";
+import { smoothHover } from "../../styles/animations.css";
 
 // Add fade-in effect
 const fadeIn = keyframes({
@@ -9,7 +10,7 @@ const fadeIn = keyframes({
 
 const shimmer = keyframes({
   "0%": { backgroundPosition: "-200% 0" },
-  "100%": { backgroundPosition: "200% 0" }
+  "100%": { backgroundPosition: "200% 0" },
 });
 
 export const container = style([
@@ -38,28 +39,15 @@ export const imageContainer = style({
   overflow: "hidden",
 });
 
-export const image = style([
-  sprinkles({
-    width: "100%",
-    height: "auto",
-    display: "block",
-  }),
-  {
-    transition: "transform 0.3s ease",
-    animation: `${fadeIn} 0.5s ease-in-out`,
-    ":hover": {
-      transform: "scale(1.3)",
-    },
-    "@media": {
-      // Giảm hiệu ứng hover trên mobile để tránh lỗi UI
-      "(max-width: 639px)": {
-        ":hover": {
-          transform: "scale(1.1)",
-        },
-      },
-    },
+export const image = style({
+  width: "100%",
+  height: "auto",
+  display: "block",
+  transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+  ":hover": {
+    transform: "scale(1.05)",
   },
-]);
+});
 
 // Add skeleton loading
 export const skeleton = style({
@@ -67,11 +55,12 @@ export const skeleton = style({
   height: "100%",
   minHeight: "200px",
   backgroundColor: "#f0f0f0",
-  backgroundImage: "linear-gradient(90deg, #f0f0f0 0px, #f8f8f8 40px, #f0f0f0 80px)",
+  backgroundImage:
+    "linear-gradient(90deg, #f0f0f0 0px, #f8f8f8 40px, #f0f0f0 80px)",
   backgroundSize: "200% 100%",
   backgroundPosition: "0 0",
   borderRadius: "8px",
-  animation: `${shimmer} 1.5s infinite linear`
+  animation: `${shimmer} 1.5s infinite linear`,
 });
 
 export const errorContainer = style([
@@ -98,5 +87,15 @@ export const productTagsContainer = style([
     top: "0",
     left: "0",
     position: "absolute",
+  },
+]);
+
+export const card = style([
+  smoothHover,
+  {
+    position: "relative",
+    borderRadius: "12px",
+    overflow: "hidden",
+    backgroundColor: "#fff",
   },
 ]);
