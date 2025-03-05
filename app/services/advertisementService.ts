@@ -48,7 +48,7 @@ export const fetchAdvertisements = async (): Promise<Advertisement[]> => {
       })
     );
   } catch (error) {
-    console.error("Lỗi khi tải quảng cáo:", error);
+    console.error("Error fetching advertisements:", error);
     return [];
   }
 };
@@ -69,7 +69,7 @@ export const getUnsplashImageUrl = async (
     const data = await response.json();
     return data.url;
   } catch (error) {
-    console.error("Lỗi khi tải hình ảnh từ Unsplash:", error);
+    console.error("Error fetching unsplash image:", error);
     // fallback to picsum if unsplash fails
     return `https://picsum.photos/${width}/${height}?random=${Math.random()}`;
   }
