@@ -14,9 +14,10 @@ export const ImageCard = ({ image }: ImageCardProps) => {
   const [hasError, setHasError] = useState(false);
   const [wasIntersected, setWasIntersected] = useState(false);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement | any>(null);
   const [retryCount, setRetryCount] = useState(0);
   const MAX_RETRIES = 3;
+  const RETRY_DELAY = 1000; // 1s delay between retries
 
   useEffect(() => {
     if (isIntersecting && !wasIntersected) {
@@ -24,32 +25,53 @@ export const ImageCard = ({ image }: ImageCardProps) => {
     }
   }, [isIntersecting, wasIntersected]);
 
-  const loadImage = useCallback(async () => {
-    if (retryCount >= MAX_RETRIES) {
-      setHasError(true);
-      return;
-    }
+  const handleImageError = useCallback(
+    (e: React.SyntheticEvent<HTMLImageElement>) => {
+      if (retryCount < MAX_RETRIES) {
+        // Add delay before retrying
+        setTimeout(() => {
+          setRetryCount((prev) => prev + 1);
+          // Add timestamp to avoid cache
+          e.currentTarget.src = `${
+            image.url
+          }?retry=${retryCount}&t=${Date.now()}`;
+        }, RETRY_DELAY * (retryCount + 1));
+      } else {
+        setHasError(true);
+        console.error(
+          `Failed to load image after ${MAX_RETRIES} retries:`,
+          image.url
+        );
+      }
+    },
+    [retryCount, image.url]
+  );
 
-    try {
-      const img = new Image();
-      img.src = image.url;
-      await new Promise((resolve, reject) => {
-        img.onload = resolve;
-        img.onerror = reject;
-      });
-      setIsLoaded(true);
-    } catch (error) {
-      console.error(`Error loading image (attempt ${retryCount + 1}):`, error);
-      setRetryCount((prev) => prev + 1);
-      setTimeout(loadImage, 1000);
-    }
-  }, [image.url, retryCount]);
-
+  // Preload image when component enters viewport
   useEffect(() => {
     if (isIntersecting && !isLoaded && !hasError) {
-      loadImage();
+      const img = new Image();
+      img.src = image.url;
+
+      const timeoutId = setTimeout(() => {
+        if (!isLoaded) {
+          handleImageError({ currentTarget: img } as any);
+        }
+      }, 5000); // Timeout after 5s
+
+      img.onload = () => {
+        setIsLoaded(true);
+        clearTimeout(timeoutId);
+      };
+
+      img.onerror = () => {
+        handleImageError({ currentTarget: img } as any);
+        clearTimeout(timeoutId);
+      };
+
+      return () => clearTimeout(timeoutId);
     }
-  }, [isIntersecting, isLoaded, hasError, loadImage]);
+  }, [isIntersecting, isLoaded, hasError, image.url, handleImageError]);
 
   useEffect(() => {
     if (containerRef.current) {
