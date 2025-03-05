@@ -34,7 +34,7 @@ export function useVideoPlayback() {
             setIsPlaying(true);
           })
           .catch((error) => {
-            console.error("Lỗi khi phát lại video:", error);
+            console.error("Error replaying video:", error);
             setIsPlaying(false);
           });
       }
@@ -60,7 +60,7 @@ export function useVideoPlayback() {
           setWasPlaying(true); // Mark video as played
         })
         .catch((error) => {
-          console.error("Lỗi khi phát video:", error);
+          console.error("Error playing video:", error);
           setIsPlaying(false);
         });
     } else {

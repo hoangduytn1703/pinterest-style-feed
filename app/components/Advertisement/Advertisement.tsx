@@ -42,7 +42,7 @@ export function Advertisement({ ad }: AdvertisementProps) {
       setIsLoaded(true);
     } catch (error) {
       console.error(
-        `Lỗi khi tải ảnh quảng cáo (lần thử ${retryCount + 1}):`,
+        `Error loading advertisement image (attempt ${retryCount + 1}):`,
         error
       );
       setRetryCount((prev) => prev + 1);

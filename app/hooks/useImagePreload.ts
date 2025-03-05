@@ -20,8 +20,8 @@ export function useImagePreload(imageUrl: string, placeholder?: string) {
     };
     
     img.onerror = (e) => {
-      console.error(`Lỗi khi tải hình ảnh: ${imageUrl}`, e);
-      setError(new Error(`Không thể tải hình ảnh: ${imageUrl}`));
+      console.error(`Error loading image: ${imageUrl}`, e);
+      setError(new Error(`Cannot load image: ${imageUrl}`));
       setIsLoading(false);
     };
     

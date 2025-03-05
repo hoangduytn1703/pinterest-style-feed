@@ -29,7 +29,7 @@ export const advertisement = style([
     boxShadow: "none",
     "@media": {
       "(max-width: 639px)": {
-        borderRadius: "6px", // Giảm border radius trên mobile
+        borderRadius: "6px",
       },
     },
   },
@@ -65,7 +65,7 @@ export const adLabel = style([
     fontWeight: 500,
     "@media": {
       "(max-width: 639px)": {
-        fontSize: "10px", // Nhỏ hơn trên mobile
+        fontSize: "10px",
         padding: "3px 6px",
         top: "4px",
         right: "4px",

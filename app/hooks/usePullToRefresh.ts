@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
+import { useRef, useState, useEffect, useCallback } from "react";
 
 interface UsePullToRefreshProps {
   onRefresh: () => void;
@@ -21,8 +21,8 @@ export function usePullToRefresh({
   const handleTouchStart = useCallback(
     (e: TouchEvent) => {
       if (disabled || refreshing.current) return;
-      
-      // Chỉ kích hoạt pull-to-refresh khi ở đầu trang
+
+      // Only activate pull-to-refresh when at the top of the page
       if (window.scrollY <= 0) {
         startY.current = e.touches[0].clientY;
         currentY.current = e.touches[0].clientY;
@@ -34,18 +34,24 @@ export function usePullToRefresh({
 
   const handleTouchMove = useCallback(
     (e: TouchEvent) => {
-      if (disabled || !isPulling || refreshing.current || startY.current === null) return;
-      
+      if (
+        disabled ||
+        !isPulling ||
+        refreshing.current ||
+        startY.current === null
+      )
+        return;
+
       currentY.current = e.touches[0].clientY;
       const deltaY = currentY.current - startY.current;
-      
-      // Chỉ xử lý khi kéo xuống (deltaY > 0)
+
+      // Only process when pulling down (deltaY > 0)
       if (deltaY > 0) {
-        // Tính toán khoảng cách kéo với hệ số giảm dần để tạo cảm giác đàn hồi
+        // Calculate pull distance with a decreasing factor to create a springy feel
         const pullDistance = Math.min(deltaY * 0.5, threshold * 1.5);
         setPullProgress(pullDistance);
-        
-        // Ngăn chặn hành vi cuộn mặc định khi đang kéo
+
+        // Prevent default scroll behavior when pulling
         e.preventDefault();
       }
     },
@@ -55,25 +61,25 @@ export function usePullToRefresh({
   const handleTouchEnd = useCallback(
     (e: TouchEvent) => {
       if (disabled || !isPulling || refreshing.current) return;
-      
+
       if (pullProgress >= threshold) {
         refreshing.current = true;
-        
-        // Gọi callback onRefresh
+
+        // Call onRefresh callback
         onRefresh();
-        
-        // Reset sau khi hoàn thành refresh
+
+        // Reset after refresh is complete
         setTimeout(() => {
           refreshing.current = false;
           setIsPulling(false);
           setPullProgress(0);
         }, 1000);
       } else {
-        // Nếu chưa đạt ngưỡng, reset về trạng thái ban đầu
+        // If not reached threshold, reset to initial state
         setIsPulling(false);
         setPullProgress(0);
       }
-      
+
       startY.current = null;
       currentY.current = null;
     },
@@ -83,15 +89,19 @@ export function usePullToRefresh({
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
-    
-    container.addEventListener('touchstart', handleTouchStart, { passive: false });
-    container.addEventListener('touchmove', handleTouchMove, { passive: false });
-    container.addEventListener('touchend', handleTouchEnd);
-    
+
+    container.addEventListener("touchstart", handleTouchStart, {
+      passive: false,
+    });
+    container.addEventListener("touchmove", handleTouchMove, {
+      passive: false,
+    });
+    container.addEventListener("touchend", handleTouchEnd);
+
     return () => {
-      container.removeEventListener('touchstart', handleTouchStart);
-      container.removeEventListener('touchmove', handleTouchMove);
-      container.removeEventListener('touchend', handleTouchEnd);
+      container.removeEventListener("touchstart", handleTouchStart);
+      container.removeEventListener("touchmove", handleTouchMove);
+      container.removeEventListener("touchend", handleTouchEnd);
     };
   }, [handleTouchStart, handleTouchMove, handleTouchEnd]);
 

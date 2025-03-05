@@ -12,8 +12,8 @@ export function trackMetric(name: string, value: number): void {
     value,
     timestamp: Date.now(),
   });
-  
-  // Giới hạn số lượng metrics để tránh memory leak
+
+  // Limit the number of metrics to prevent memory leak
   if (metrics.length > 1000) {
     metrics.splice(0, 100);
   }
@@ -21,17 +21,17 @@ export function trackMetric(name: string, value: number): void {
 
 export function getMetrics(name?: string): PerformanceMetric[] {
   if (name) {
-    return metrics.filter(metric => metric.name === name);
+    return metrics.filter((metric) => metric.name === name);
   }
   return [...metrics];
 }
 
 export function trackImageLoadTime(imageUrl: string): () => void {
   const startTime = performance.now();
-  
+
   return () => {
     const endTime = performance.now();
     const loadTime = endTime - startTime;
     trackMetric(`image_load_${imageUrl}`, loadTime);
   };
-} 
+}

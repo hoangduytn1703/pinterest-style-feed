@@ -39,7 +39,7 @@ export const ImageCard = ({ image }: ImageCardProps) => {
       });
       setIsLoaded(true);
     } catch (error) {
-      console.error(`Lỗi khi tải ảnh (lần thử ${retryCount + 1}):`, error);
+      console.error(`Error loading image (attempt ${retryCount + 1}):`, error);
       setRetryCount((prev) => prev + 1);
       setTimeout(loadImage, 1000);
     }

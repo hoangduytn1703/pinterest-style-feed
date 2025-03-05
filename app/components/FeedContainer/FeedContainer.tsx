@@ -180,7 +180,7 @@ export const FeedContainer = () => {
         if (rowHeightStr) rowHeight = parseInt(rowHeightStr) || rowHeight;
         if (rowGapStr) rowGap = parseInt(rowGapStr) || rowGap;
       } catch (err) {
-        console.error("Lỗi khi đọc thuộc tính CSS:", err);
+        console.error("Error reading CSS properties:", err);
       }
 
       const items = document.querySelectorAll(`.${styles.masonryItem}`);
@@ -197,7 +197,7 @@ export const FeedContainer = () => {
             );
             (item as HTMLElement).style.gridRowEnd = `span ${rowSpan}`;
           } catch (err) {
-            console.error("Lỗi khi tính toán rowSpan:", err);
+            console.error("Error calculating rowSpan:", err);
           }
         }
       });

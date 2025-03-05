@@ -22,7 +22,6 @@ export default function Index() {
     if (navigation.state === "loading") {
       setIsChanging(true);
     } else {
-      // Đợi animation kết thúc
       const timer = setTimeout(() => {
         setIsChanging(false);
       }, 500);

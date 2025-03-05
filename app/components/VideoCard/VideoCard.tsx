@@ -13,7 +13,7 @@ export function VideoCard({ video }: VideoCardProps) {
   const { videoRef, isPlaying, togglePlayback } = useVideoPlayback();
 
   const handleVideoError = () => {
-    console.error("Không thể tải video:", video.url);
+    console.error("Cannot load video:", video.url);
     setError(true);
   };
 
