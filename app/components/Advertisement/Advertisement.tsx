@@ -14,6 +14,7 @@ export function Advertisement({ ad }: AdvertisementProps) {
   const [wasIntersected, setWasIntersected] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
   const MAX_RETRIES = 3;
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   // Follow when the element has been displayed
   useEffect(() => {
@@ -22,40 +23,37 @@ export function Advertisement({ ad }: AdvertisementProps) {
     }
   }, [isIntersecting, wasIntersected]);
 
-  // Use random image url instead of static url
-  const imageUrl = `https://picsum.photos/seed/${ad.id}/${ad.width}/${ad.height}`;
-
-  // Add function to preload image
-  const preloadImage = useCallback(async () => {
-    if (retryCount >= MAX_RETRIES) {
-      setHasError(true);
-      return;
-    }
-
+  //Get Unsplash image url, if failed, fallback to placeholder
+  const getUnsplashUrl = useCallback(async () => {
     try {
-      const img = new Image();
-      img.src = imageUrl;
-      await new Promise((resolve, reject) => {
-        img.onload = resolve;
-        img.onerror = reject;
-      });
-      setIsLoaded(true);
+      const response = await fetch(`/api/unsplash?id=${ad.id}`);
+      if (!response.ok) throw new Error("Failed to fetch Unsplash image");
+      const data = await response.json();
+      return data.url;
     } catch (error) {
-      console.error(
-        `Error loading advertisement image (attempt ${retryCount + 1}):`,
-        error
-      );
-      setRetryCount((prev) => prev + 1);
-      setTimeout(preloadImage, 1000); // Retry after 1 second to avoid rate limit
+      console.error("Error fetching Unsplash image:", error);
+      // Fallback to placeholder if Unsplash fails
+      return `https://via.placeholder.com/${ad.width}x${ad.height}?text=Advertisement`;
     }
-  }, [imageUrl, retryCount]);
+  }, [ad.id, ad.width, ad.height]);
 
   // Preload image when component is displayed in viewport
   useEffect(() => {
     if (isIntersecting && !isLoaded && !hasError) {
-      preloadImage();
+      getUnsplashUrl().then((url) => {
+        const img = new Image();
+        img.src = url;
+        img.onload = () => {
+          setImageUrl(url);
+          setIsLoaded(true);
+        };
+        img.onerror = () => {
+          setHasError(true);
+          setRetryCount((prev) => prev + 1);
+        };
+      });
     }
-  }, [isIntersecting, isLoaded, hasError, preloadImage]);
+  }, [isIntersecting, isLoaded, hasError, getUnsplashUrl]);
 
   const handleImageLoad = () => {
     setIsLoaded(true);
@@ -80,17 +78,19 @@ export function Advertisement({ ad }: AdvertisementProps) {
       {(isIntersecting || wasIntersected) && (
         <>
           {!isLoaded && !hasError && <div className={styles.skeleton}></div>}
-          <img
-            src={imageUrl}
-            alt={ad.alt || "Advertisement"}
-            className={styles.adImage}
-            width={ad.width}
-            height={ad.height}
-            loading="lazy"
-            onLoad={handleImageLoad}
-            onError={handleImageError}
-            style={{ display: isLoaded ? "block" : "none" }}
-          />
+          {imageUrl && (
+            <img
+              src={imageUrl}
+              alt={ad.alt || "Advertisement"}
+              className={styles.adImage}
+              width={ad.width}
+              height={ad.height}
+              loading="lazy"
+              onLoad={handleImageLoad}
+              onError={handleImageError}
+              style={{ display: isLoaded ? "block" : "none" }}
+            />
+          )}
           {isLoaded && <div className={styles.adLabel}>Advertisement</div>}
         </>
       )}
