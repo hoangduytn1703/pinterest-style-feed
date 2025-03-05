@@ -4,8 +4,21 @@ import { smoothHover } from "../../styles/animations.css";
 
 // Add fade-in effect
 const fadeIn = keyframes({
-  "0%": { opacity: 0 },
-  "100%": { opacity: 1 },
+  "0%": {
+    opacity: 0,
+    transform: "translateY(10px) scale(0.98)",
+    filter: "blur(2px)",
+  },
+  "50%": {
+    opacity: 0.5,
+    transform: "translateY(5px) scale(0.99)",
+    filter: "blur(1px)",
+  },
+  "100%": {
+    opacity: 1,
+    transform: "translateY(0) scale(1)",
+    filter: "blur(0)",
+  },
 });
 
 const shimmer = keyframes({
@@ -25,10 +38,15 @@ export const container = style([
 ]);
 
 export const imageCard = style([
+  sprinkles({
+    width: "100%",
+  }),
   {
     position: "relative",
     borderRadius: "0",
     overflow: "hidden",
+    opacity: 0,
+    animation: `${fadeIn} 0.5s ease-out forwards`,
   },
 ]);
 
@@ -43,9 +61,11 @@ export const image = style({
   width: "100%",
   height: "auto",
   display: "block",
-  transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+  opacity: 0,
+  animation: `${fadeIn} 0.5s ease-out forwards`,
+  transition: "transform 0.3s ease",
   ":hover": {
-    transform: "scale(1.05)",
+    transform: "scale(1.02)",
   },
 });
 
