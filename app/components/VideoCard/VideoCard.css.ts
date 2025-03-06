@@ -31,6 +31,7 @@ export const videoCard = style([
     borderRadius: "0",
     overflow: "hidden",
     backgroundColor: "#000",
+    animation: `${fadeIn} 0.5s ease-in-out`,
   },
 ]);
 
