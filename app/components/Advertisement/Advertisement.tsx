@@ -78,19 +78,21 @@ export function Advertisement({ ad }: AdvertisementProps) {
       {(isIntersecting || wasIntersected) && (
         <>
           {!isLoaded && !hasError && <div className={styles.skeleton}></div>}
-          {imageUrl && (
-            <img
-              src={imageUrl}
-              alt={ad.alt || "Advertisement"}
-              className={styles.adImage}
-              width={ad.width}
-              height={ad.height}
-              loading="lazy"
-              onLoad={handleImageLoad}
-              onError={handleImageError}
-              style={{ display: isLoaded ? "block" : "none" }}
-            />
-          )}
+          <div className={styles.imageContainer}>
+            {imageUrl && (
+              <img
+                src={imageUrl}
+                alt={ad.alt || "Advertisement"}
+                className={styles.adImage}
+                width={ad.width}
+                height={ad.height}
+                loading="lazy"
+                onLoad={handleImageLoad}
+                onError={handleImageError}
+                style={{ display: isLoaded ? "block" : "none" }}
+              />
+            )}
+          </div>
           {isLoaded && <div className={styles.adLabel}>Advertisement</div>}
         </>
       )}

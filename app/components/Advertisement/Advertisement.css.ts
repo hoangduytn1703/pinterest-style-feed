@@ -21,7 +21,16 @@ export const container = style([
     overflow: "hidden",
   },
 ]);
-
+export const imageContainer = style({
+  position: "relative",
+  overflow: "hidden",
+  borderRadius: "0",
+  cursor: "pointer",
+  transition: "transform 0.3s ease-in-out",
+  ":hover": {
+    transform: "scale(1.3)",
+  },
+});
 export const advertisement = style([
   sprinkles({
     width: "100%",

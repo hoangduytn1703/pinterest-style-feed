@@ -56,37 +56,28 @@ export const imageCard = style([
     width: "100%",
   }),
   {
-    cursor: "pointer",
     position: "relative",
     borderRadius: "0",
     overflow: "hidden",
-    opacity: 0,
-    selectors: {
-      "&[data-index]": {
-        animation: `${dropIn} 0.6s ease-out forwards`,
-        animationDelay: "calc(var(--index) * 0.1s)"
-      },
-    },
   },
 ]);
 
 export const imageContainer = style({
   position: "relative",
-  width: "100%",
-  height: "100%",
   overflow: "hidden",
+  borderRadius: "0",
+  cursor: "pointer",
+  transition: "transform 0.3s ease-in-out",
+  ":hover": {
+    transform: "scale(1.3)",
+  },
 });
 
 export const image = style({
   width: "100%",
   height: "auto",
   display: "block",
-  opacity: 0,
-  animation: `${fadeIn} 0.5s ease-out forwards`,
-  transition: "transform 0.3s ease",
-  ":hover": {
-    transform: "scale(1.02)",
-  },
+  objectFit: "cover",
 });
 
 // Add skeleton loading
@@ -122,6 +113,7 @@ export const errorContainer = style([
 export const productTagsContainer = style([
   sprinkles({}),
   {
+    cursor: "pointer",
     height: "100%",
     width: "100%",
     top: "0",

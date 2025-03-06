@@ -96,15 +96,17 @@ export const ImageCard = ({ image, index = 0 }: ImageCardProps) => {
       {isIntersecting || wasIntersected ? (
         <>
           {!isLoaded && !hasError && <div className={styles.skeleton}></div>}
-          <img
-            src={image.url}
-            alt={image.alt}
-            className={styles.image}
-            width={image.width}
-            height={image.height}
-            loading="lazy"
-            style={{ display: isLoaded ? "block" : "none" }}
-          />
+          <div className={styles.imageContainer}>
+            <img
+              src={image.url}
+              alt={image.alt}
+              className={styles.image}
+              width={image.width}
+              height={image.height}
+              loading="lazy"
+              style={{ display: isLoaded ? "block" : "none" }}
+            />
+          </div>
 
           {isLoaded && image.productTags && image.productTags.length > 0 && (
             <div className={styles.productTagsContainer}>
