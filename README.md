@@ -44,7 +44,7 @@ To run the development server, use the following command:
 npm run dev
 ```
 
-This will start the server on `http://localhost:3000` by default.
+This will start the server on `http://localhost:3000` and `http://your-ip:3000` by default.
 
 ## Deployment
 
@@ -90,7 +90,7 @@ This project uses [Vanilla Extract CSS](https://vanilla-extract.style/) for styl
 1. **When Unsplash API fails:**
 
    - Check local cache
-   - If no cache exists, fallback to Picsum
+   - If no cache exist, use Picsum
 
 2. **When Picsum fails:**
 

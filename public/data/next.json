@@ -23,7 +23,7 @@
             "y": 40,
             "price": 49.99,
             "currency": "$",
-            "name": "Áo sơ mi"
+            "name": "random tag"
           }
         ]
       },
@@ -57,7 +57,7 @@
             "y": 50,
             "price": 89.99,
             "currency": "$",
-            "name": "Quần jeans"
+            "name": "Random tag 2"
           }
         ]
       },
@@ -91,7 +91,7 @@
             "y": 60,
             "price": 159.99,
             "currency": "$",
-            "name": "Túi đeo chéo"
+            "name": "Random tag 3"
           }
         ]
       },
@@ -125,7 +125,7 @@
             "y": 30,
             "price": 119.99,
             "currency": "$",
-            "name": "Mũ bucket"
+            "name": "Random tag 4"
           }
         ]
       },
@@ -151,17 +151,8 @@
         "url": "https://picsum.photos/800/1200?random=33",
         "width": 600,
         "height": 1000,
-        "alt": "Random image 33",
-        "productTags": [
-          {
-            "id": "tag-13",
-            "x": 30,
-            "y": 70,
-            "price": 69.99,
-            "currency": "$",
-            "name": "Dây chuyền"
-          }
-        ]
+        "alt": "Random image 33"
+        
       },
       {
         "id": "image-34",
@@ -193,7 +184,7 @@
             "y": 40,
             "price": 179.99,
             "currency": "$",
-            "name": "Giày cao gót"
+            "name": "Random tag 5"
           }
         ]
       },
@@ -227,7 +218,7 @@
             "y": 60,
             "price": 39.99,
             "currency": "$",
-            "name": "Khăn choàng cổ"
+            "name": "Random tag 6"
           }
         ]
       },

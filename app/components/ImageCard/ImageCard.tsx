@@ -14,7 +14,7 @@ export const ImageCard = ({ image }: ImageCardProps) => {
   const [hasError, setHasError] = useState(false);
   const [wasIntersected, setWasIntersected] = useState(false);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const containerRef = useRef<HTMLDivElement | any>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [retryCount, setRetryCount] = useState(0);
   const MAX_RETRIES = 3;
   const RETRY_DELAY = 1000; // 1s delay between retries

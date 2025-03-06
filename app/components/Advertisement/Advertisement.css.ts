@@ -27,6 +27,7 @@ export const advertisement = style([
     width: "100%",
   }),
   {
+    cursor: "pointer",
     position: "relative",
     borderRadius: "0",
     overflow: "hidden",

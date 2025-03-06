@@ -42,6 +42,7 @@ export const imageCard = style([
     width: "100%",
   }),
   {
+    cursor: "pointer",
     position: "relative",
     borderRadius: "0",
     overflow: "hidden",
