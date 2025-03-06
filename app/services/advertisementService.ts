@@ -1,6 +1,6 @@
 import type { Advertisement } from "~/models/types";
 
-// List Fibonacci: 1, 2, 3, 5, 8, 13, 21, ...
+// List Fibonacci: F(n)=F(n−1)+F(n−2) ...
 const FIBONACCI_POSITIONS = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
 
 export const fetchAdvertisements = async (): Promise<Advertisement[]> => {
@@ -31,6 +31,7 @@ export const fetchAdvertisements = async (): Promise<Advertisement[]> => {
               img.onload = resolve;
               img.onerror = resolve; // Still continue even if there's an error
               img.src = imageUrl;
+              img.alt = ad.alt + " Advertisement " + index;
               // Set timeout to avoid waiting too long
               setTimeout(resolve, 2000);
             });

@@ -17,7 +17,7 @@ export const container = style([
   }),
   {
     position: "relative",
-    borderRadius: "8px",
+    borderRadius: "0",
     overflow: "hidden",
   },
 ]);
@@ -35,7 +35,7 @@ export const advertisement = style([
     boxShadow: "none",
     "@media": {
       "(max-width: 639px)": {
-        borderRadius: "6px",
+        borderRadius: "0",
       },
     },
   },
@@ -66,7 +66,7 @@ export const adLabel = style([
     right: "8px",
     position: "absolute",
     padding: "4px 8px",
-    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    backgroundColor: "rgba(233, 26, 26, 0.8)",
     borderRadius: "4px",
     fontWeight: 500,
     "@media": {
@@ -89,7 +89,7 @@ export const skeleton = style({
     "linear-gradient(90deg, #f0f0f0 0px, #f8f8f8 40px, #f0f0f0 80px)",
   backgroundSize: "200% 100%",
   backgroundPosition: "0 0",
-  borderRadius: "8px",
+  borderRadius: "0",
   animation: `${shimmer} 1.5s infinite linear`,
 });
 

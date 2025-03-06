@@ -64,14 +64,9 @@ export function usePagination() {
 
   // Check if a number is a Fibonacci index
   const isFibonacciIndex = (index: number): boolean => {
-    // Known Fibonacci numbers in a reasonable range for feed
     const fibIndices = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
     return fibIndices.includes(index);
   };
-
-  // In the fetchData function or where you process data
-  // Need to add logic to load advertisement.json separately
-  // Then insert advertisements at Fibonacci positions
 
   const mergedItems = [];
   let adIndex = 0;

@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '../styles/vars.css';
 
 export const container = style({
-  maxWidth: '1200px',
+  maxWidth: '100%',
   margin: '0 auto',
   padding: vars.space.md,
 });

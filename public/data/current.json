@@ -37,8 +37,8 @@
       "productTags": [
         {
           "id": "tag-2",
-          "x": 88,
-          "y": 91,
+          "x": 90,
+          "y": 92,
           "price": 29.99,
           "currency": "$",
           "name": "Case 2 - bottom right"
@@ -71,8 +71,8 @@
         },
         {
           "id": "tag-3",
-          "x": 75,
-          "y": 88,
+          "x": 90,
+          "y": 92,
           "price": 19.99,
           "currency": "$",
           "name": "Multi tags 3"
@@ -85,7 +85,17 @@
       "url": "https://picsum.photos/800/1200?random=4",
       "width": 800,
       "height": 800,
-      "alt": "Random image 4"
+      "alt": "Random image 4",
+      "productTags": [
+        {
+          "id": "tag-1",
+          "x": 3,
+          "y": 92,
+          "price": 49.99,
+          "currency": "$",
+          "name": "Case 4 - bottom left"
+        }
+      ]
     },
     {
       "id": "image-5",

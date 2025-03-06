@@ -1,5 +1,6 @@
 import { style, keyframes } from "@vanilla-extract/css";
 import { sprinkles } from "../../styles/sprinkles.css";
+import { header } from "~/routes/index.css";
 
 const fadeIn = keyframes({
   "0%": { opacity: 0 },
@@ -48,6 +49,8 @@ export const videoContainer = style([
 export const video = style({
   width: "100%",
   height: "auto",
+  minHeight: "500px",
+  maxHeight: "750px",
   display: "block",
   objectFit: "cover",
   borderRadius: "8px",

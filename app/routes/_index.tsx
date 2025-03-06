@@ -31,15 +31,9 @@ export default function Index() {
 
   return (
     <div className={styles.container}>
-      <div
-        className={`${styles.content} ${
-          isChanging ? styles.pageTransitionOut : styles.pageTransitionIn
-        }`}
-      >
         <main>
           <FeedContainer />
         </main>
-      </div>
     </div>
   );
 }
