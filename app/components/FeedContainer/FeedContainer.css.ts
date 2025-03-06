@@ -10,7 +10,7 @@ export const container = style([
   {
     gap: "8px",
     padding: "0",
-    maxWidth: "1200px",
+    maxWidth: "1360px",
     margin: "0 auto",
     "@media": {
       "(max-width: 767px)": {

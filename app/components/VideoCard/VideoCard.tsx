@@ -10,7 +10,7 @@ interface VideoCardProps {
 export function VideoCard({ video }: VideoCardProps) {
   const [error, setError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const { videoRef, isPlaying, togglePlayback } = useVideoPlayback();
+  const { videoRef, isPlaying, togglePlayback, setIsPlaying } = useVideoPlayback();
 
   const handleVideoError = () => {
     console.error("Cannot load video:", video.url);
@@ -20,9 +20,15 @@ export function VideoCard({ video }: VideoCardProps) {
   const handleVideoLoaded = () => {
     setIsLoaded(true);
   };
+  // handle video ended: set isPlaying to false and reset currentTime to 0
+  const handleVideoEnded = () => {
+    setIsPlaying(false);
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+    }
+  };
 
   useEffect(() => {
-    // Set timeout to show skeleton at least 500ms
     const timer = setTimeout(() => {
       if (!isLoaded) {
         const videoElement = videoRef.current;
@@ -54,6 +60,7 @@ export function VideoCard({ video }: VideoCardProps) {
             preload="metadata"
             onError={handleVideoError}
             onLoadedData={handleVideoLoaded}
+            onEnded={handleVideoEnded}
             className={styles.video}
             playsInline
             style={{ display: isLoaded ? "block" : "none" }}
