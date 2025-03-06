@@ -26,6 +26,20 @@ const shimmer = keyframes({
   "100%": { backgroundPosition: "200% 0" },
 });
 
+const dropIn = keyframes({
+  "0%": {
+    opacity: 0,
+    transform: "translateY(-20px)",
+  },
+  "60%": {
+    transform: "translateY(10px)",
+  },
+  "100%": {
+    opacity: 1,
+    transform: "translateY(0)",
+  },
+});
+
 export const container = style([
   sprinkles({
     width: "100%",
@@ -47,7 +61,12 @@ export const imageCard = style([
     borderRadius: "0",
     overflow: "hidden",
     opacity: 0,
-    animation: `${fadeIn} 0.5s ease-out forwards`,
+    selectors: {
+      "&[data-index]": {
+        animation: `${dropIn} 0.6s ease-out forwards`,
+        animationDelay: "calc(var(--index) * 0.1s)"
+      },
+    },
   },
 ]);
 

@@ -10,7 +10,7 @@ export const container = style([
   {
     gap: "8px",
     padding: "0",
-    maxWidth: "1360px",
+    maxWidth: "100%",
     margin: "0 auto",
     "@media": {
       "(max-width: 767px)": {
@@ -43,6 +43,8 @@ export const masonryGrid = style({
   gap: "8px",
   gridAutoRows: "5px",
   animation: `${fadeInScale} 0.5s ease-out`,
+  maxWidth: "1366px",
+  margin: "0 auto",
   "@media": {
     "(max-width: 639px)": {
       gridTemplateColumns: "repeat(2, 1fr)",
@@ -74,12 +76,11 @@ export const mobileFullWidthItem = style({
 export const masonryItem = style({
   position: "relative",
   transition: "transform 0.3s ease, opacity 0.3s ease",
-  ":hover": {
-    transform: "translateY(-4px)",
-  },
+
   borderRadius: "0",
   overflow: "hidden",
   marginBottom: "0",
+  maxWidth: "330px",
 });
 
 export const loading = style({

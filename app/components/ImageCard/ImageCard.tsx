@@ -6,9 +6,10 @@ import * as styles from "./ImageCard.css";
 
 interface ImageCardProps {
   image: ImageContent;
+  index?: number;
 }
 
-export const ImageCard = ({ image }: ImageCardProps) => {
+export const ImageCard = ({ image, index = 0 }: ImageCardProps) => {
   const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.1 });
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -89,6 +90,8 @@ export const ImageCard = ({ image }: ImageCardProps) => {
         }
       }}
       className={styles.imageCard}
+      data-index={index}
+      style={{ "--index": index } as React.CSSProperties}
     >
       {isIntersecting || wasIntersected ? (
         <>
